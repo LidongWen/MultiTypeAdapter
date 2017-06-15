@@ -23,7 +23,7 @@
 总体来讲支持以下效果
 
 ![总览](http://upload-images.jianshu.io/upload_images/1599843-8989704f86d75c2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
+![MultiType.png](http://upload-images.jianshu.io/upload_images/1599843-94c00e9b66a4b00d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 # 特性
 - 轻盈、整个类库只有9个文件
 - 全面、支持 bean type 之间 一对一 和 一对多 的关系绑定

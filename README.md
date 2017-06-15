@@ -53,11 +53,13 @@ CommonAdapter adapter = new CommonAdapter<ItemClass>(this, ItemClass.class, R.la
 ....
 recyclerView.setAdapter(adapter);
 ```
-查看：[single example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/MainActivity.java)
+示例查看：[single example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/MainActivity.java)
 
 # 多数据-多类型
 一个bean对应一种view
-![一对一](http://upload-images.jianshu.io/upload_images/1599843-e82c558dd9258376.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+<img width="500" height="500" src="http://upload-images.jianshu.io/upload_images/1599843-e82c558dd9258376.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></img> 
+
 
 创建一个或多个 `class` 继承`MultiItemView`，这边做某一种数据类型 对应的 `ItemView`的创建，与数据装配
 ```java
@@ -86,10 +88,10 @@ adapter.register(Bean03.class, new ItemVIew03());
 adapter.setItems(items);
 recyclerView.setAdapter(adapter);
 ```
-查看：[many2many Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/manyData/MultiDataActivity.java)
+示例查看：[many2many Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/manyData/MultiDataActivity.java)
 # 单数据-多类型
 单数据-多类型
-![one-many](http://upload-images.jianshu.io/upload_images/1599843-e48d8a32ee92ea1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<img width="500" height="500" src="http://upload-images.jianshu.io/upload_images/1599843-e48d8a32ee92ea1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></img> 
 
 创建一个或多个 `class` 继承`MultiItemView`，其中 他们的数据类型要一致，重写 `isForViewType`方法
 ```java
@@ -133,7 +135,7 @@ activity
        ...
 ```
 
-[one-many](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/one2many/One2ManyActivity.java)
+示例查看：[one-many Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/one2many/One2ManyActivity.java)
 
 # 事件
 设置点击事件于长按事件
@@ -160,10 +162,10 @@ activity
         adapter.register(Bean04.class, new ItemVIew06());   // 一对多
 
 ```
-[mix Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/mix/MixActivity.java
+示例查看：[mix Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/mix/MixActivity.java
 )
 # 瀑布流布局
-[WaterFall Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/mix/WaterFallActivity.java)
+示例查看：[WaterFall Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/mix/WaterFallActivity.java)
 # 上拉加载
 效果如下
 ![pull-load.gif](http://upload-images.jianshu.io/upload_images/1599843-3eb7440ddddedb39.gif?imageMogr2/auto-orient/strip)
@@ -186,7 +188,7 @@ activity
     // loadMoreWrapper2.setLoadMore(false); 开启或关闭加载功能
 ```
 
-[pull-load Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/pull_load/PullLoadActivity.java)
+示例查看：[pull-load Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/pull_load/PullLoadActivity.java)
 # 无数据时过度界面设置
 ```java
     EmptyWrapper emptyWrapper;
@@ -196,7 +198,7 @@ activity
     emptyWrapper.setEmptyView(R.layout.layout_empty);
     recyclerView.setAdapter(emptyWrapper);
 ```
-[Empty Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/empty/EmptyActivity.java)
+示例查看：[Empty Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/empty/EmptyActivity.java)
 # 混合布局拖拽实现
 // todo  待做
 # 吸顶效果
@@ -209,5 +211,10 @@ activity
 
 
 > ##  V 0.0.1
->  
+>  - 实现一对一关系功能
+>  - 实现一对多关系功能
+>  - 事件监听
+>  - 支持网格、瀑布流、线性布局
+>  - 上拉加载功能
+>  - 数据为空时过渡界面展示功能
 

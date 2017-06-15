@@ -79,7 +79,7 @@ public class PullLoadActivity extends AppCompatActivity {
         for (int i = 0; i < 8; i++) {
             items.add(new Bean01("bean01_" + i));
         }
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 6; i++) {
             items.add(new Bean02("bean02_" + i));
         }
         adapter.setItems(items);
@@ -98,14 +98,14 @@ public class PullLoadActivity extends AppCompatActivity {
         new MainThreadExecutor(2000).execute(new Runnable() {
             @Override
             public void run() {
-//                items.add(" 加载第 " + count + "次");
-//                for (int i = 0; i < 8; i++) {
-//                    items.add(new Bean01("bean01_" + i));
-//                }
-//                for (int i = 0; i < 6; i++) {
-//                    items.add(new Bean02("bean02_" + i));
-//                }
-//                loadMoreWrapper2.notifyDataSetChanged();
+                items.add(" 加载第 " + count + "次");
+                for (int i = 0; i < 8; i++) {
+                    items.add(new Bean01("bean01_" + i));
+                }
+                for (int i = 0; i < 6; i++) {
+                    items.add(new Bean02("bean02_" + i));
+                }
+                loadMoreWrapper2.notifyDataSetChanged();
             }
         });
     }

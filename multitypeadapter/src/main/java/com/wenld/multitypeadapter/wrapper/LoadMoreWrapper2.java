@@ -21,6 +21,7 @@ public class LoadMoreWrapper2 extends RecyclerView.Adapter<RecyclerView.ViewHold
     private int mLoadMoreLayoutId;
 
     private boolean hasLoadMore = true;
+    private boolean isLoading = false;
 
     public LoadMoreWrapper2(RecyclerView.Adapter adapter) {
         mInnerAdapter = adapter;
@@ -60,7 +61,8 @@ public class LoadMoreWrapper2 extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (isShowLoadMore(position)) {
-            if (mOnLoadMoreListener != null) {
+            if (mOnLoadMoreListener != null && !isLoading) {
+                isLoading = true;
                 mOnLoadMoreListener.onLoadMoreRequested();
             }
             return;
@@ -126,6 +128,11 @@ public class LoadMoreWrapper2 extends RecyclerView.Adapter<RecyclerView.ViewHold
     public LoadMoreWrapper2 setLoadMoreView(int layoutId) {
         mLoadMoreLayoutId = layoutId;
         return this;
+    }
+
+    public void loadingComplete() {
+        notifyDataSetChanged();
+        isLoading = false;
     }
 
     public void setLoadMore(boolean b) {

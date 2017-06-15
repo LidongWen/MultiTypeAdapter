@@ -39,7 +39,7 @@ repositories {
 }
 // yout project build.gradle
 dependencies {
-        compile 'com.github.LidongWen:MultiTypeAdapter:0.0.1'
+        compile 'com.github.LidongWen:MultiTypeAdapter:0.0.2'
 }
 ```
 # 单数据
@@ -91,7 +91,7 @@ recyclerView.setAdapter(adapter);
 示例查看：[many2many Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/manyData/MultiDataActivity.java)
 # 单数据-多类型
 单数据-多类型
-<img width="500" height="300" src="http://upload-images.jianshu.io/upload_images/1599843-e48d8a32ee92ea1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></img> 
+<img width="500" height="400" src="http://upload-images.jianshu.io/upload_images/1599843-e48d8a32ee92ea1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></img> 
 
 创建一个或多个 `class` 继承`MultiItemView`，其中 他们的数据类型要一致，重写 `isForViewType`方法
 ```java
@@ -167,8 +167,10 @@ activity
 # 瀑布流布局
 示例查看：[WaterFall Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/mix/WaterFallActivity.java)
 # 上拉加载
-效果如下
-![pull-load.gif](http://upload-images.jianshu.io/upload_images/1599843-3eb7440ddddedb39.gif?imageMogr2/auto-orient/strip)
+效果如下  
+
+![loading.gif](http://upload-images.jianshu.io/upload_images/1599843-e97c23253e586b84.gif?imageMogr2/auto-orient/strip)
+
 将我们的 初始化`LoadMoreWrapper2`,添加上拉UI
 ```java
     LoadMoreWrapper2 loadMoreWrapper2;
@@ -181,7 +183,7 @@ activity
     loadMoreWrapper2.setOnLoadMoreListener(new LoadMoreWrapper2.OnLoadMoreListener() {
         @Override
         public void onLoadMoreRequested() {
-            
+            loadMoreWrapper2.loadingComplete();//加载完毕
         }
     });
     

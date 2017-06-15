@@ -90,12 +90,20 @@ public class PullLoadActivity extends AppCompatActivity {
     int count = 0;
 
     private void addPage() {
-        if (count > 3) {
-            noMore();
+        if (count > 1) {
+            new MainThreadExecutor(2000).execute(
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            noMore();
+                        }
+                    }
+            );
+            return;
         }
         count++;
 
-        new MainThreadExecutor(2000).execute(new Runnable() {
+        new MainThreadExecutor(1500).execute(new Runnable() {
             @Override
             public void run() {
                 items.add(" 加载第 " + count + "次");
@@ -105,7 +113,7 @@ public class PullLoadActivity extends AppCompatActivity {
                 for (int i = 0; i < 6; i++) {
                     items.add(new Bean02("bean02_" + i));
                 }
-                loadMoreWrapper2.notifyDataSetChanged();
+                loadMoreWrapper2.loadingComplete();
             }
         });
     }

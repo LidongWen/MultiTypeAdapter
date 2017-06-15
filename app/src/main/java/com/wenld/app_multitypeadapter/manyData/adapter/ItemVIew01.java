@@ -1,6 +1,7 @@
 package com.wenld.app_multitypeadapter.manyData.adapter;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class ItemVIew01 extends MultiItemView<Bean01,ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Bean01 item, int position) {
+        Log.e("ItemVIew01","onBindViewHolder  "+position);
         holder.setText(R.id.tv_item01,item.title);
     }
 }

@@ -8,26 +8,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wenld.app_multitypeadapter.R;
-import com.wenld.multitypeadapter.MultiItemView;
-import com.wenld.multitypeadapter.ViewHolder;
+import com.wenld.multitypeadapter.base.MultiItemView;
+import com.wenld.multitypeadapter.base.ViewHolder;
 
 /**
  * <p/>
  * Author: 温利东 on 2017/6/14 11:52.
- * blog: http://blog.csdn.net/sinat_15877283
+ * http://www.jianshu.com/u/99f514ea81b3
  * github: https://github.com/LidongWen
  */
 
 public class ItemVIewNormal extends MultiItemView<String, ViewHolder> {
     @NonNull
     @Override
-    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         View view = inflater.inflate(R.layout.item_go, parent, false);
         return new ViewHolder(inflater.getContext(), view);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull String item, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @NonNull String item, int position) {
         holder.setText(R.id.tv, item);
     }
 

@@ -5,13 +5,13 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.wenld.app_multitypeadapter.one2many.Bean04;
-import com.wenld.multitypeadapter.MultiItemView;
-import com.wenld.multitypeadapter.ViewHolder;
+import com.wenld.multitypeadapter.base.MultiItemView;
+import com.wenld.multitypeadapter.base.ViewHolder;
 
 /**
  * <p/>
  * Author: 温利东 on 2017/6/14 11:52.
- * blog: http://blog.csdn.net/sinat_15877283
+ * http://www.jianshu.com/u/99f514ea81b3
  * github: https://github.com/LidongWen
  */
 
@@ -25,12 +25,12 @@ public class ItemVIew06 extends MultiItemView<Bean04, ViewHolder> {
 
     @NonNull
     @Override
-    protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         return null;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Bean04 item, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Bean04 item, int position) {
 //        holder.setText(R.id.tv_item05, item.title);
     }
 

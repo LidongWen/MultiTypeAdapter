@@ -1,4 +1,4 @@
-package com.wenld.multitypeadapter;
+package com.wenld.multitypeadapter.base;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -23,7 +23,7 @@ import android.widget.TextView;
 /**
  * <p/>
  * Author: 温利东 on 2017/6/14 14:52.
- * blog: http://blog.csdn.net/sinat_15877283
+ * http://www.jianshu.com/u/99f514ea81b3
  * github: https://github.com/LidongWen
  */
 

@@ -1,7 +1,9 @@
-package com.wenld.multitypeadapter;
+package com.wenld.multitypeadapter.base;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+
+import com.wenld.multitypeadapter.base.MultiItemView;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,19 +12,16 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /**
  * <p/>
  * Author: 温利东 on 2017/6/14 11:09.
- * blog: http://blog.csdn.net/sinat_15877283
+ * http://www.jianshu.com/u/99f514ea81b3
  * github: https://github.com/LidongWen
  * 帮助管理类型
  */
 
 public class TypePool {
     private @NonNull
-//    final List<Class<?>> classes;
     final Map<Class<?>, CopyOnWriteArrayList<MultiItemView>> calss2ItemViewMap;
     final Map<Integer, MultiItemView> itemViewType2itemViewMap;
     final Map<MultiItemView, Integer> itemViewMap2itemViewType;
-//    private @NonNull
-//    final List<MultiItemView<?, ?>> itemViews;
 
     public TypePool() {
         calss2ItemViewMap = new ConcurrentHashMap<>();
@@ -50,12 +49,9 @@ public class TypePool {
             itemViewMap2itemViewType.put(multiItemView, size);
         }
         calss2ItemViewMap.put(clazz, list);
-//        classes.add(clazz);
-//        itemViews.add(multiItemView);
     }
 
     public <T> int getItemViewType(@NonNull T item) {
-
 
         Class<?> clazz = item.getClass();
         CopyOnWriteArrayList<MultiItemView> list = calss2ItemViewMap.get(clazz);
@@ -65,24 +61,9 @@ public class TypePool {
             }
         }
         return -1;
-//        int index = classes.indexOf(clazz);
-//        if (index != -1) {
-//            return index;
-//        }
-//        for (int i = 0; i < classes.size(); i++) {
-//            if (classes.get(i).isAssignableFrom(clazz)) {
-//                return i;
-//            }
-//        }
-//        return -1;
     }
 
     public MultiItemView getMultiItemView(int itemViewType) {
         return itemViewType2itemViewMap.get(itemViewType);
     }
-//
-//    @NonNull
-//    public List<MultiItemView<?, ?>> getItemViews() {
-//        return itemViews;
-//    }
 }

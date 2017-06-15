@@ -1,4 +1,4 @@
-package com.wenld.multitypeadapter;
+package com.wenld.multitypeadapter.base;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -23,10 +23,10 @@ public abstract class MultiItemView<T, VH extends RecyclerView.ViewHolder> {
     }
 
     @NonNull
-    protected abstract VH onCreateViewHolder(
+    public abstract VH onCreateViewHolder(
             @NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
-    protected abstract void onBindViewHolder(@NonNull VH holder, @NonNull T item, int position);
+    public abstract void onBindViewHolder(@NonNull VH holder, @NonNull T item, int position);
 
     public boolean isForViewType(T item, int postion) {
         return true;

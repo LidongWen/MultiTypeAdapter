@@ -27,6 +27,12 @@
         <activity
             android:name=".mix.WaterFallActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".empty.EmptyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".pull_load.PullLoadActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 </manifest>

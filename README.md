@@ -169,8 +169,7 @@ activity
 # 上拉加载
 效果如下  
 
-![loading.gif](http://upload-images.jianshu.io/upload_images/1599843-e97c23253e586b84.gif?imageMogr2/auto-orient/strip)
-<img width="320" height="500" src="https://github.com/LidongWen/MultiTypeAdapter/blob/master/doc/loading.gif"></img> 
+![loading.gif]("https://github.com/LidongWen/MultiTypeAdapter/blob/master/doc/loading.gif") 
 
 将我们的 初始化`LoadMoreWrapper2`,添加上拉UI
 ```java

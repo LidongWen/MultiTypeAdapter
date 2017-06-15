@@ -58,7 +58,7 @@ recyclerView.setAdapter(adapter);
 # 多数据-多类型
 一个bean对应一种view
 
-<img width="500" height="500" src="http://upload-images.jianshu.io/upload_images/1599843-e82c558dd9258376.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></img> 
+<img width="500" height="300" src="http://upload-images.jianshu.io/upload_images/1599843-e82c558dd9258376.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></img> 
 
 
 创建一个或多个 `class` 继承`MultiItemView`，这边做某一种数据类型 对应的 `ItemView`的创建，与数据装配
@@ -91,7 +91,7 @@ recyclerView.setAdapter(adapter);
 示例查看：[many2many Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/manyData/MultiDataActivity.java)
 # 单数据-多类型
 单数据-多类型
-<img width="500" height="500" src="http://upload-images.jianshu.io/upload_images/1599843-e48d8a32ee92ea1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></img> 
+<img width="500" height="300" src="http://upload-images.jianshu.io/upload_images/1599843-e48d8a32ee92ea1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></img> 
 
 创建一个或多个 `class` 继承`MultiItemView`，其中 他们的数据类型要一致，重写 `isForViewType`方法
 ```java

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="normal_space">2dp</dimen>
+    <dimen name="btn_space">5dp</dimen>
+</resources>

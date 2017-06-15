@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wenld.app_multitypeadapter">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/ThemeActivity">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".manyData.MultiDataActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".one2many.One2ManyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mix.MixActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mix.WaterFallActivity"
+            android:screenOrientation="portrait" />
+
+    </application>
+</manifest>

@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.wenld.app_multitypeadapter.decoration.ItemDecoration;
 import com.wenld.app_multitypeadapter.empty.EmptyActivity;
+import com.wenld.app_multitypeadapter.itemTouch.ItemTouchActivity;
 import com.wenld.app_multitypeadapter.manyData.MultiDataActivity;
 import com.wenld.app_multitypeadapter.mix.MixActivity;
 import com.wenld.app_multitypeadapter.mix.WaterFallActivity;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(new ItemClass("WaterFallActivity", WaterFallActivity.class));
         list.add(new ItemClass("pull-load", PullLoadActivity.class));
         list.add(new ItemClass("empty", EmptyActivity.class));
+        list.add(new ItemClass("itemTouchHepler", ItemTouchActivity.class));
 
         adapter.setItems(list);
         adapter.notifyDataSetChanged();

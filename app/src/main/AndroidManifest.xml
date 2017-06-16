@@ -33,6 +33,8 @@
         <activity
             android:name=".pull_load.PullLoadActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".itemTouch.ItemTouchActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

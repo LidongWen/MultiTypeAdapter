@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wenld.multitypeadapter.base.ICoustomAdapter;
 import com.wenld.multitypeadapter.base.MultiItemView;
 import com.wenld.multitypeadapter.base.OnItemClickListener;
 import com.wenld.multitypeadapter.base.TypePool;
@@ -20,7 +21,7 @@ import java.util.List;
  * github: https://github.com/LidongWen
  */
 
-public class MultiTypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MultiTypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ICoustomAdapter {
     List<?> items;
     TypePool typePool;
     protected @Nullable
@@ -89,9 +90,12 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
-        super.onViewAttachedToWindow(holder);
-        if (holder.getLayoutPosition() < getItemCount()) {
-            typePool.getMultiItemView(typePool.getItemViewType(items.get(holder.getLayoutPosition()))).onViewAttachedToWindow(holder);
+        onViewAttachedToWindow(holder, holder.getLayoutPosition());
+    }
+
+    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder, int postion) {
+        if (postion < getItemCount()) {
+            typePool.getMultiItemView(typePool.getItemViewType(items.get(postion))).onViewAttachedToWindow(holder);
         }
     }
 

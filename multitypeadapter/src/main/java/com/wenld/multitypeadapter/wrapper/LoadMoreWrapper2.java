@@ -2,9 +2,11 @@ package com.wenld.multitypeadapter.wrapper;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wenld.multitypeadapter.base.ICoustomAdapter;
 import com.wenld.multitypeadapter.base.ViewHolder;
 import com.wenld.multitypeadapter.utils.WrapperUtils;
 
@@ -13,7 +15,7 @@ import com.wenld.multitypeadapter.utils.WrapperUtils;
  * 增加开关控制
  * Created by zhy on 16/6/23.
  */
-public class LoadMoreWrapper2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class LoadMoreWrapper2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ICoustomAdapter {
     public static final int ITEM_TYPE_LOAD_MORE = Integer.MAX_VALUE - 2;
 
     private RecyclerView.Adapter mInnerAdapter;
@@ -63,6 +65,7 @@ public class LoadMoreWrapper2 extends RecyclerView.Adapter<RecyclerView.ViewHold
         if (isShowLoadMore(position)) {
             if (mOnLoadMoreListener != null && !isLoading) {
                 isLoading = true;
+                Log.e("onBindViewHolder",isLoading+" "+position);
                 mOnLoadMoreListener.onLoadMoreRequested();
             }
             return;
@@ -90,11 +93,25 @@ public class LoadMoreWrapper2 extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
-        mInnerAdapter.onViewAttachedToWindow(holder);
-
         if (isShowLoadMore(holder.getLayoutPosition())) {
             setFullSpan(holder);
+        } else {
+            onViewAttachedToWindow(holder, holder.getLayoutPosition());
         }
+    }
+
+    @Override
+    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder, int postion) {
+        if (isShowLoadMore(holder.getLayoutPosition())) {
+            setFullSpan(holder);
+            return;
+        }
+        if (mInnerAdapter instanceof ICoustomAdapter) {
+            ((ICoustomAdapter) mInnerAdapter).onViewAttachedToWindow(holder, postion);
+            return;
+        }
+        mInnerAdapter.onViewAttachedToWindow(holder);
+
     }
 
     private void setFullSpan(RecyclerView.ViewHolder holder) {
@@ -131,7 +148,6 @@ public class LoadMoreWrapper2 extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public void loadingComplete() {
-        notifyDataSetChanged();
         isLoading = false;
     }
 
@@ -142,5 +158,9 @@ public class LoadMoreWrapper2 extends RecyclerView.Adapter<RecyclerView.ViewHold
         } else {
             notifyItemRemoved(getItemCount());
         }
+    }
+
+    public boolean isLoading() {
+        return isLoading;
     }
 }

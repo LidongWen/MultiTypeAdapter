@@ -35,12 +35,31 @@ public class WaterFallActivity extends AppCompatActivity {
         adapter = new MultiTypeAdapter();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rlv_multidata);
 
+        initRegister();
+
+        setLayoutManager(recyclerView);
+
+        int space = getResources().getDimensionPixelSize(R.dimen.normal_space);
+        recyclerView.addItemDecoration(new ItemDecoration(space));
+        recyclerView.setAdapter(adapter);
+
+        initData();
+
+//        layoutManager.setSpanSizeLookup(spanSizeLookup);
+
+        adapter.setItems(items);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void initRegister() {
         adapter.register(String.class, new ItemVIewNormal());
         adapter.register(Bean01.class, new ItemVIew01());
         adapter.register(Bean02.class, new ItemVIew02());
         adapter.register(Bean03.class, new ItemVIew03());
         adapter.register(Bean04.class, new ItemVIew06());
+    }
 
+    private void setLayoutManager(RecyclerView recyclerView) {
         final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL);
         GridLayoutManager.SpanSizeLookup spanSizeLookup = new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -65,12 +84,11 @@ public class WaterFallActivity extends AppCompatActivity {
             }
         };
 //        layoutManager.setSpanSizeLookup(spanSizeLookup);
-        layoutManager.setSpanCount(2);
+//        layoutManager.setSpanCount(2);
         recyclerView.setLayoutManager(layoutManager);
-        int space = getResources().getDimensionPixelSize(R.dimen.normal_space);
-        recyclerView.addItemDecoration(new ItemDecoration(space));
-        recyclerView.setAdapter(adapter);
+    }
 
+    private void initData() {
         items = new ArrayList<>();
         for (int j = 0; j < 10; j++) {
             items.add("混合式 瀑布流 \n 多数据 -> 多类型  单数据 -> 多类型");
@@ -104,10 +122,5 @@ public class WaterFallActivity extends AppCompatActivity {
                 items.add(new Bean03("bean03_" + i));
             }
         }
-
-//        layoutManager.setSpanSizeLookup(spanSizeLookup);
-
-        adapter.setItems(items);
-        adapter.notifyDataSetChanged();
     }
 }

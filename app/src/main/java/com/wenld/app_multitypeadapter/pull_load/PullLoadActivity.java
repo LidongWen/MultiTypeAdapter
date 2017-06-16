@@ -10,6 +10,7 @@ import com.wenld.app_multitypeadapter.R;
 import com.wenld.app_multitypeadapter.decoration.ItemDecoration;
 import com.wenld.app_multitypeadapter.manyData.adapter.ItemVIew01;
 import com.wenld.app_multitypeadapter.manyData.adapter.ItemVIew02;
+import com.wenld.app_multitypeadapter.manyData.adapter.ItemVIew03;
 import com.wenld.app_multitypeadapter.manyData.adapter.ItemVIewNormal;
 import com.wenld.app_multitypeadapter.manyData.bean.Bean01;
 import com.wenld.app_multitypeadapter.manyData.bean.Bean02;
@@ -36,6 +37,7 @@ public class PullLoadActivity extends AppCompatActivity {
         adapter.register(String.class, new ItemVIewNormal());
         adapter.register(Bean01.class, new ItemVIew01());
         adapter.register(Bean02.class, new ItemVIew02());
+        adapter.register(Bean03.class, new ItemVIew03());
 
         final GridLayoutManager layoutManager = new GridLayoutManager(this, SPAN_COUNT);
         GridLayoutManager.SpanSizeLookup spanSizeLookup = new GridLayoutManager.SpanSizeLookup() {
@@ -82,6 +84,9 @@ public class PullLoadActivity extends AppCompatActivity {
         for (int i = 0; i < 6; i++) {
             items.add(new Bean02("bean02_" + i));
         }
+        for (int i = 0; i < 1; i++) {
+            items.add(new Bean03("bean03_" + i));
+        }
         adapter.setItems(items);
 //        adapter.notifyDataSetChanged();
         loadMoreWrapper2.notifyDataSetChanged();
@@ -113,7 +118,11 @@ public class PullLoadActivity extends AppCompatActivity {
                 for (int i = 0; i < 6; i++) {
                     items.add(new Bean02("bean02_" + i));
                 }
+                for (int i = 0; i < 1; i++) {
+                    items.add(new Bean03("bean03_" + i));
+                }
                 loadMoreWrapper2.loadingComplete();
+                loadMoreWrapper2.notifyDataSetChanged();
             }
         });
     }

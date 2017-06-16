@@ -17,6 +17,7 @@
     - [混合布局拖拽实现](#混合布局拖拽实现)
     - [吸顶效果](#吸顶效果)
     - [设置复用数量](#设置复用数量)
+- [扩展](#扩展)
 - [Thrank](#Thrank)
 - [一些说明](#一些说明)
 # 总览
@@ -39,7 +40,7 @@ repositories {
 }
 // yout project build.gradle
 dependencies {
-        compile 'com.github.LidongWen:MultiTypeAdapter:0.0.2'
+        compile 'com.github.LidongWen:MultiTypeAdapter:0.0.3'
 }
 ```
 # 单数据
@@ -207,6 +208,10 @@ activity
 // todo  待做
 # 设置复用数量
 // todo  待做
+
+# 扩展
+# [SasukeRecyclerView](https://github.com/LidongWen/SasukeRecyclerView):基于[MultiType-Adapter](https://github.com/LidongWen/MultiTypeAdapter)开发的一框下拉刷新上拉加载的库
+
 # Thrank
 - [鸿洋](https://github.com/hongyangAndroid/baseAdapter): 空白页功能与上拉加载功能 我拿过来稍微做了修改
 - [Glide](https://github.com/bumptech/glide): 图片加载
@@ -223,3 +228,11 @@ activity
 >  - 上拉加载功能
 >  - 数据为空时过渡界面展示功能
 
+代码传送门：[戳我!!!](https://github.com/LidongWen/MultiTypeAdapter)
+
+-----
+
+希望我的文章不会误导在观看的你，如果有异议的地方欢迎讨论和指正。
+如果能给观看的你带来收获，那就是最好不过了。
+
+##### 人生得意须尽欢, 桃花坞里桃花庵

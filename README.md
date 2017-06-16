@@ -18,7 +18,7 @@
     - [吸顶效果](#吸顶效果)
     - [设置复用数量](#设置复用数量)
 - [Thrank](#Thrank)
-
+- [一些说明](#一些说明)
 # 总览
 总体来讲支持以下效果
 
@@ -210,7 +210,10 @@ activity
 # Thrank
 - [鸿洋](https://github.com/hongyangAndroid/baseAdapter): 空白页功能与上拉加载功能 我拿过来稍微做了修改
 - [Glide](https://github.com/bumptech/glide): 图片加载
+- [drakeet](https://github.com/drakeet)学习其中思想
 
+# 一些说明
+大家可能咋一看，会认为我抄袭  [drakeet](https://github.com/drakeet)的代码，我虽然有学习过他的代码，其中也让我受益良多，不论是技术点还是架构松耦合方面的知识，但是，这份开源库虽然使用上与之相似，但完全手写，不存在抄袭 [drakeet](https://github.com/drakeet) , 而且 是否抄袭 请大家阅读完源码之后再做评论，谢谢。
 
 > ##  V 0.0.1
 >  - 实现一对一关系功能

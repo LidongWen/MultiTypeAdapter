@@ -1,5 +1,6 @@
 package com.wenld.multitypeadapter.base;
 
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,26 +16,25 @@ import java.util.List;
  * github: https://github.com/LidongWen
  */
 
-public abstract class MultiItemView<T, VH extends RecyclerView.ViewHolder> {
-    private final List<MultiItemView<T, ? extends RecyclerView.ViewHolder>> list;
+public abstract class MultiItemView<T> {
+    private final List<MultiItemView<T>> list;
 
     public MultiItemView() {
         list = new ArrayList<>();
     }
 
     @NonNull
-    public abstract VH onCreateViewHolder(
-            @NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
+    public abstract @LayoutRes int getLayoutId();
 
-    public abstract void onBindViewHolder(@NonNull VH holder, @NonNull T item, int position);
+    public abstract void onBindViewHolder(@NonNull ViewHolder holder, @NonNull T item, int position);
 
     public boolean isForViewType(T item, int postion) {
         return true;
     }
 
-    public MultiItemView<T, ? extends RecyclerView.ViewHolder> addChildeItemView(MultiItemView<T, ? extends RecyclerView.ViewHolder> multiItemView) {
+    public MultiItemView<T> addChildeItemView(MultiItemView<T> multiItemView) {
         list.add(multiItemView);
-        return (MultiItemView<T, ? extends RecyclerView.ViewHolder>) this;
+        return this;
     }
 
     public boolean haveChild() {
@@ -44,7 +44,7 @@ public abstract class MultiItemView<T, VH extends RecyclerView.ViewHolder> {
             return true;
     }
 
-    public List<MultiItemView<T, ? extends RecyclerView.ViewHolder>> getChildList() {
+    public List<MultiItemView<T>> getChildList() {
         return list;
     }
 

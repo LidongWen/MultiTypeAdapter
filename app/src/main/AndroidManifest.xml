@@ -36,5 +36,11 @@
         <activity
             android:name=".itemTouch.ItemTouchActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".stickheader.StickHeaderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".stickheader.StickHeaderSingleActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

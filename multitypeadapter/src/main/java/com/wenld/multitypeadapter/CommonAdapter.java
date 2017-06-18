@@ -26,12 +26,12 @@ public abstract class CommonAdapter<T> extends MultiTypeAdapter {
         super();
         mContext = context;
         this.layoutId = layoutId;
-        register(clazz, new MultiItemView<T, ViewHolder>() {
+        register(clazz, new MultiItemView<T>() {
 
             @NonNull
             @Override
-            public ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-                return new ViewHolder(mContext, inflater.inflate(layoutId, parent, false));
+            public int getLayoutId() {
+                return layoutId;
             }
 
             @Override

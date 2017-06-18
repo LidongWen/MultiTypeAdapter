@@ -11,6 +11,7 @@ import com.wenld.multitypeadapter.base.ICoustomAdapter;
 import com.wenld.multitypeadapter.base.MultiItemView;
 import com.wenld.multitypeadapter.base.OnItemClickListener;
 import com.wenld.multitypeadapter.base.TypePool;
+import com.wenld.multitypeadapter.base.ViewHolder;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ import java.util.List;
  * github: https://github.com/LidongWen
  */
 
-public class MultiTypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ICoustomAdapter {
+public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implements ICoustomAdapter {
     List<?> items;
     TypePool typePool;
     protected @Nullable
@@ -40,20 +41,20 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.getContext());
         }
         MultiItemView multiItemView = typePool.getMultiItemView(viewType);
-        return multiItemView.onCreateViewHolder(inflater, parent);
+        return new ViewHolder(inflater.getContext(), inflater.inflate(multiItemView.getLayoutId(), parent, false));
     }
 
-    public <T> void register(@NonNull Class<? extends T> clazz, @NonNull MultiItemView<T, ?> multiItemView) {
+    public <T> void register(@NonNull Class<? extends T> clazz, @NonNull MultiItemView<T> multiItemView) {
         typePool.register(clazz, multiItemView);
     }
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         final Object item = items.get(position);
         MultiItemView binder = typePool.getMultiItemView(holder.getItemViewType());
         binder.onBindViewHolder(holder, item, position);
@@ -89,7 +90,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
+    public void onViewAttachedToWindow(ViewHolder holder) {
         onViewAttachedToWindow(holder, holder.getLayoutPosition());
     }
 

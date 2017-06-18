@@ -39,7 +39,7 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
 //        if (spanSizeLookup.getSpanSize(position) < 4) {
             outRect.left = space;
             outRect.right=space;
-            outRect.top = space;
+            outRect.bottom = space;
 //        }
     }
 }

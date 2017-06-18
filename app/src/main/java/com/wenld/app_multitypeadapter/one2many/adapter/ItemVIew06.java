@@ -15,7 +15,7 @@ import com.wenld.multitypeadapter.base.ViewHolder;
  * github: https://github.com/LidongWen
  */
 
-public class ItemVIew06 extends MultiItemView<Bean04, ViewHolder> {
+public class ItemVIew06 extends MultiItemView<Bean04> {
     public ItemVIew06() {
         super();
         addChildeItemView(new ItemVIew04());
@@ -25,8 +25,8 @@ public class ItemVIew06 extends MultiItemView<Bean04, ViewHolder> {
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        return null;
+    public int getLayoutId() {
+        return 0;
     }
 
     @Override

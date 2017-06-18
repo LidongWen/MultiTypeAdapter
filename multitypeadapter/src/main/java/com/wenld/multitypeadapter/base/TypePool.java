@@ -29,7 +29,7 @@ public class TypePool {
         itemViewMap2itemViewType = new ConcurrentHashMap<>();
     }
 
-    public <T> void register(@NonNull Class<? extends T> clazz, @NonNull MultiItemView<T, ?> multiItemView) {
+    public <T> void register(@NonNull Class<? extends T> clazz, @NonNull MultiItemView<T> multiItemView) {
         CopyOnWriteArrayList<MultiItemView> list = calss2ItemViewMap.get(clazz);
         if (list == null) {
             list = new CopyOnWriteArrayList<>();
@@ -38,7 +38,7 @@ public class TypePool {
         if (multiItemView.haveChild()) {
             list.addAll(multiItemView.getChildList());
 
-            for (MultiItemView<T, ? extends RecyclerView.ViewHolder> tMultiItemView : multiItemView.getChildList()) {
+            for (MultiItemView<T> tMultiItemView : multiItemView.getChildList()) {
                 itemViewType2itemViewMap.put(size, tMultiItemView);
                 itemViewMap2itemViewType.put(tMultiItemView, size);
                 size++;

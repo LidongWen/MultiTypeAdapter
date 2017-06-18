@@ -17,13 +17,13 @@ import com.wenld.multitypeadapter.base.ViewHolder;
  * github: https://github.com/LidongWen
  */
 
-public class ItemVIew04 extends MultiItemView<Bean04, ViewHolder> {
+public class ItemVIew04 extends MultiItemView<Bean04> {
+
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View view = inflater.inflate(R.layout.item_four, parent, false);
-        return new ViewHolder(inflater.getContext(), view);
+    public int getLayoutId() {
+        return R.layout.item_four;
     }
 
     @Override

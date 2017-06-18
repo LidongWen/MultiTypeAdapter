@@ -15,6 +15,8 @@ import com.wenld.app_multitypeadapter.mix.MixActivity;
 import com.wenld.app_multitypeadapter.mix.WaterFallActivity;
 import com.wenld.app_multitypeadapter.one2many.One2ManyActivity;
 import com.wenld.app_multitypeadapter.pull_load.PullLoadActivity;
+import com.wenld.app_multitypeadapter.stickheader.StickHeaderActivity;
+import com.wenld.app_multitypeadapter.stickheader.StickHeaderSingleActivity;
 import com.wenld.multitypeadapter.CommonAdapter;
 import com.wenld.multitypeadapter.base.OnItemClickListener;
 import com.wenld.multitypeadapter.base.ViewHolder;
@@ -65,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         list.add(new ItemClass("pull-load", PullLoadActivity.class));
         list.add(new ItemClass("empty", EmptyActivity.class));
         list.add(new ItemClass("itemTouchHepler", ItemTouchActivity.class));
+        list.add(new ItemClass("StickHeader", StickHeaderActivity.class));
+        list.add(new ItemClass("StickHeaderSingle",StickHeaderSingleActivity.class));
 
         adapter.setItems(list);
         adapter.notifyDataSetChanged();

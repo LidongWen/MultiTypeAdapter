@@ -15,7 +15,7 @@
     - [上拉加载](#上拉加载)
     - [无数据时过度界面设置](#无数据时过度界面设置)
     - [混合布局拖拽实现](#混合布局拖拽实现)
-    - [吸顶效果](#吸顶效果)
+    - [吸顶效果](https://github.com/LidongWen/MultiTypeAdapter/blob/master/doc/sticky.md)
     - [设置复用数量](#设置复用数量)
 - [扩展](#扩展)
 - [Thrank](#Thrank)
@@ -40,7 +40,7 @@ repositories {
 }
 // yout project build.gradle
 dependencies {
-        compile 'com.github.LidongWen:MultiTypeAdapter:0.0.3'
+        compile 'com.github.LidongWen:MultiTypeAdapter:0.1.1'
 }
 ```
 # 单数据
@@ -64,13 +64,8 @@ recyclerView.setAdapter(adapter);
 
 创建一个或多个 `class` 继承`MultiItemView`，这边做某一种数据类型 对应的 `ItemView`的创建，与数据装配
 ```java
-public class ItemVIew01 extends MultiItemView<Bean01,ViewHolder> {
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View view = inflater.inflate(R.layout.item_one, parent, false);
-        return new ViewHolder(inflater.getContext(),view);
-    }
+public class ItemVIew01 extends MultiItemView<Bean01> {
+
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Bean01 item, int position) {
@@ -79,6 +74,7 @@ public class ItemVIew01 extends MultiItemView<Bean01,ViewHolder> {
 }
 public class Item ...
 ```
+
 创建一个 适配器`MultiTypeAdapter` ，注册 `bean` 与 `MultiItemView` 将适配器设入`RecyclerView`;
 ```java
 private MultiTypeAdapter adapter = new MultiTypeAdapter();
@@ -170,7 +166,7 @@ activity
 # 上拉加载
 效果如下  
 
-![loading.gif](https://github.com/LidongWen/MultiTypeAdapter/blob/master/doc/loading.gif)
+![loading.gif](https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/loading.gif)
 
 将我们的 初始化`LoadMoreWrapper2`,添加上拉UI
 ```java
@@ -219,6 +215,12 @@ activity
 
 # 一些说明
 大家可能咋一看，会认为我抄袭  [drakeet](https://github.com/drakeet)的代码，我虽然有学习过他的代码，其中也让我受益良多，不论是技术点还是架构松耦合方面的知识，但是，这份开源库虽然使用上与之相似，但完全手写，不存在抄袭 [drakeet](https://github.com/drakeet) , 而且 是否抄袭 请大家阅读完源码之后再做评论，谢谢。
+
+> ##  V 0.1.1
+> - MultiItemView 改变，更加简洁、直观
+> - 新增 吸顶功能 [吸顶效果](https://github.com/LidongWen/MultiTypeAdapter/blob/master/doc/sticky.md)
+>
+> ![0.1.1 版本 ](http://upload-images.jianshu.io/upload_images/1599843-b2506d6cec4d9f8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 > ##  V 0.0.1
 >  - 实现一对一关系功能

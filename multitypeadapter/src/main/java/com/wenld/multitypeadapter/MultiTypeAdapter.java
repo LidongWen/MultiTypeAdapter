@@ -49,8 +49,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
         return new ViewHolder(inflater.getContext(), inflater.inflate(multiItemView.getLayoutId(), parent, false));
     }
 
-    public <T> void register(@NonNull Class<? extends T> clazz, @NonNull MultiItemView<T> multiItemView) {
+    public <T> MultiTypeAdapter register(@NonNull Class<? extends T> clazz, @NonNull MultiItemView<T> multiItemView) {
         typePool.register(clazz, multiItemView);
+        return this;
     }
 
     @Override
@@ -85,8 +86,9 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
         return items.size();
     }
 
-    public void setItems(List<?> items) {
+    public MultiTypeAdapter setItems(List<?> items) {
         this.items = items;
+        return this;
     }
 
     @Override

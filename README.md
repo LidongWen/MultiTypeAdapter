@@ -85,6 +85,9 @@ private MultiTypeAdapter adapter = new MultiTypeAdapter();
 adapter.register(Bean01.class, new ItemVIew01());
 adapter.register(Bean02.class, new ItemVIew02());
 adapter.register(Bean03.class, new ItemVIew03());
+//  restful 风格
+//  adapter.register(Bean01.class, new ItemVIew01())
+//          .register(Bean02.class, new ItemVIew02());
 ...
 adapter.setItems(items);
 recyclerView.setAdapter(adapter);

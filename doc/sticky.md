@@ -1,6 +1,6 @@
 ## [MultiType-Adapter](https://github.com/LidongWen/MultiTypeAdapter)打造悬浮吸顶效果
 
-注：当前版本只适合配合RecyclerView快速打造一款 展示UI 悬浮吸顶效果，如 通讯录效果，暂时不支持触摸事件。
+配合RecyclerView快速打造一款 展示UI 悬浮吸顶效果，如 通讯录效果，时光轴效果等等，且支持触摸事件。
 
  **文章地址：[戳我!](http://www.jianshu.com/p/032a6773620b)**
 

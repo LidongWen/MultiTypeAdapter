@@ -19,6 +19,7 @@ package com.wenld.multitypeadapter.sticky;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -198,6 +199,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
             if (entry.getValue().itemView.getTag() != null) {
                 Region region = (Region) entry.getValue().itemView.getTag();
                 if (x > region.left && x < region.right && y > region.top && y < region.bottom) {
+                    Log.e("region", entry.getKey()+"  "+region.left +"  "+ region.right +"  "+ region.top+"  "+ region.bottom);
                     return entry.getValue().itemView;
                 }
             }

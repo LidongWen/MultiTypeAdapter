@@ -1,5 +1,6 @@
 package com.wenld.multitypeadapter.sticky;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -57,6 +58,39 @@ public class StickySingleHeader {
                     + this.getClass().getName() + " methon" + Thread.currentThread().getStackTrace()[1].getMethodName());
         }
         decor = new StickyHeaderDecoration(adapter, isImmersion);
+        ArrayList<RecyclerView.ItemDecoration> property = getItemDecorationsAndClearOld(recyclerView);
+        findMyListernerAndClear(recyclerView);
+
+        recyclerView.addItemDecoration(decor, property.size());
+        recyclerView.addOnItemTouchListener(new MyOnItemToucherListerner() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        View view = decor.findHeaderView((int) event.getX(), (int) event.getY());
+                        if (view != null)
+                            return true;
+                }
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent event) {
+                View view2 = decor.findHeaderView((int) event.getX(), (int) event.getY());
+                if (view2 != null) {
+                    view2.performClick();
+                }
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
+    }
+
+    @NonNull
+    public ArrayList<RecyclerView.ItemDecoration> getItemDecorationsAndClearOld(RecyclerView recyclerView) {
         Class<?> ownerClass = recyclerView.getClass();
         Field field = null;
         ArrayList<RecyclerView.ItemDecoration> property = new ArrayList();
@@ -81,33 +115,40 @@ public class StickySingleHeader {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+        return property;
+    }
 
-
-        recyclerView.addItemDecoration(decor, property.size());
-        recyclerView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        View view = decor.findHeaderView((int) event.getX(), (int) event.getY());
-                        if (view != null)
-                            return true;
-                    case MotionEvent.ACTION_UP:
-                        View view2 = decor.findHeaderView((int) event.getX(), (int) event.getY());
-                        if (view2 != null) {
-                            view2.performClick();
-                            return true;
-                        }
+    private void findMyListernerAndClear(RecyclerView recyclerView) {
+        Class<?> ownerClass = recyclerView.getClass();
+        Field field = null;
+        ArrayList<?> property = new ArrayList();
+        try {
+            Field[] fields = ownerClass.getDeclaredFields();
+            for (int i = 0; i < fields.length; i++) {
+                field = fields[i];
+                if (field.getName().equals("mOnItemTouchListeners")) {
+                    field.setAccessible(true);
+                    break;
                 }
-                return false;
             }
-        });
+            if (property != null) {
+                property = (ArrayList) field.get(recyclerView);
+                for (Object o : property) {
+                    if (o instanceof MyOnItemToucherListerner) {
+                        recyclerView.removeOnItemTouchListener((MyOnItemToucherListerner) o);
+                        break;
+                    }
+                }
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     public void notifyDataSetChanged(RecyclerView recyclerView) {
         Class<?> ownerClass = recyclerView.getClass();
         Field field = null;
-        ArrayList<RecyclerView.ItemDecoration> property;
+        ArrayList<?> property;
         try {
             Field[] fields = ownerClass.getDeclaredFields();
             for (int i = 0; i < fields.length; i++) {
@@ -118,7 +159,7 @@ public class StickySingleHeader {
                 }
             }
             property = (ArrayList) field.get(recyclerView);
-            for (RecyclerView.ItemDecoration o : property) {
+            for (Object o : property) {
                 if (o instanceof StickyHeaderDecoration) {
                     ((StickyHeaderDecoration) o).clearHeaderCache();
                     break;
@@ -127,5 +168,9 @@ public class StickySingleHeader {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    private interface MyOnItemToucherListerner extends RecyclerView.OnItemTouchListener {
+
     }
 }

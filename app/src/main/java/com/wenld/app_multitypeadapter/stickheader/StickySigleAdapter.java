@@ -2,11 +2,13 @@ package com.wenld.app_multitypeadapter.stickheader;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
 
 import com.wenld.app_multitypeadapter.R;
 import com.wenld.app_multitypeadapter.stickheader.bean.GroupSingleBean;
-import com.wenld.multitypeadapter.sticky.StickyAdapter;
 import com.wenld.multitypeadapter.base.ViewHolder;
+import com.wenld.multitypeadapter.sticky.StickyAdapter;
 
 import java.util.List;
 
@@ -43,6 +45,13 @@ public class StickySigleAdapter extends StickyAdapter {
             for (int i = groupPositions.size() - 1; i >= 0; i--) {
                 if (position >= groupPositions.get(i)) {
                     viewholder.setText(R.id.tv_header, groupBeans.get(i).getTitle());
+                    viewholder.setOnClickListener(R.id.tv_header, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Log.e("header onclick", " "+position);
+                        }
+                    });
+
                     break;
                 }
             }

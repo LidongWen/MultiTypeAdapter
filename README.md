@@ -40,7 +40,7 @@ repositories {
 }
 // yout project build.gradle
 dependencies {
-        compile 'com.github.LidongWen:MultiTypeAdapter:0.1.1'
+        compile 'com.github.LidongWen:MultiTypeAdapter:0.1.2'
 }
 ```
 # 单数据
@@ -228,7 +228,11 @@ activity
 > - 新增 吸顶功能 [吸顶效果](https://github.com/LidongWen/MultiTypeAdapter/blob/master/doc/sticky.md)
 >
 > ![0.1.1 版本 ](http://upload-images.jianshu.io/upload_images/1599843-b2506d6cec4d9f8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
+> ##  V 0.1.2
+>  - 支持悬浮头部触摸事件，点击事件，长按事件等
+>  - multiTypeAdapter支持restful风格调用
+> ##  V 0.1.1
+>  - 支持头部吸顶功能
 > ##  V 0.0.1
 >  - 实现一对一关系功能
 >  - 实现一对多关系功能

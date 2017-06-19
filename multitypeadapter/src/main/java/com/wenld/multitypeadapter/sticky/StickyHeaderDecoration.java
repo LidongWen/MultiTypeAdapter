@@ -144,8 +144,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
                     if (isImmersion) left = child.getLeft();
                     int top = getHeaderTop(parent, child, header, adapterPos, layoutPos);
                     c.translate(left, top);
-//                    header.setTranslationX(left);
-//                    header.setTranslationY(top);
+                    header.setTag(new Region(left, top, left + header.getMeasuredWidth(), top + header.getMeasuredHeight()));
                     header.draw(c);
                     c.restore();
                 } else if (hasHeader(adapterPos)) {
@@ -155,11 +154,9 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
                     if (isImmersion) left = child.getLeft();
                     int top = getHeaderTop(parent, child, header, adapterPos, layoutPos);
                     c.translate(left, top);
-                    header.setTranslationX(left);
-                    header.setTranslationY(top);
+                    header.setTag(new Region(left, top, left + header.getMeasuredWidth(), top + header.getMeasuredHeight()));
                     header.draw(c);
                     c.restore();
-
                 }
             }
         }
@@ -171,7 +168,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
         if (layoutPos == 0) {
 
             final int count = parent.getChildCount();
-            for (int i = 1; (i < count ); i++) {
+            for (int i = 1; (i < count); i++) {
                 int adapterPosHere = parent.getChildAdapterPosition(parent.getChildAt(i));
                 if (adapterPosHere != RecyclerView.NO_POSITION) {
                     if (hasHeader(adapterPosHere)) {
@@ -195,4 +192,31 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
     private int getHeaderHeightForLayout(View header) {
         return isImmersion ? 0 : header.getHeight();
     }
+
+    public View findHeaderView(int x, int y) {
+        for (Map.Entry<Long, RecyclerView.ViewHolder> entry : mHeaderCache.entrySet()) {
+            if (entry.getValue().itemView.getTag() != null) {
+                Region region = (Region) entry.getValue().itemView.getTag();
+                if (x > region.left && x < region.right && y > region.top && y < region.bottom) {
+                    return entry.getValue().itemView;
+                }
+            }
+        }
+        return null;
+    }
+
+    public class Region {
+        public int left;
+        public int top;
+        public int right;
+        public int bottom;
+
+        public Region(int left, int top, int right, int bottom) {
+            this.left = left;
+            this.top = top;
+            this.right = right;
+            this.bottom = bottom;
+        }
+    }
+
 }

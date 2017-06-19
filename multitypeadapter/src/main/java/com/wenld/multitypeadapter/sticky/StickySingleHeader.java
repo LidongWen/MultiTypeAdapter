@@ -2,6 +2,8 @@ package com.wenld.multitypeadapter.sticky;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -82,6 +84,24 @@ public class StickySingleHeader {
 
 
         recyclerView.addItemDecoration(decor, property.size());
+        recyclerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        View view = decor.findHeaderView((int) event.getX(), (int) event.getY());
+                        if (view != null)
+                            return true;
+                    case MotionEvent.ACTION_UP:
+                        View view2 = decor.findHeaderView((int) event.getX(), (int) event.getY());
+                        if (view2 != null) {
+                            view2.performClick();
+                            return true;
+                        }
+                }
+                return false;
+            }
+        });
     }
 
     public void notifyDataSetChanged(RecyclerView recyclerView) {

@@ -208,12 +208,12 @@ activity
 # 混合布局拖拽实现
 // todo  待做
 # 吸顶效果
-// todo  待做
+[吸顶效果](https://github.com/LidongWen/MultiTypeAdapter/blob/master/doc/sticky.md)
 # 设置复用数量
 // todo  待做
 
 # 扩展
-# [SasukeRecyclerView](https://github.com/LidongWen/SasukeRecyclerView):基于[MultiType-Adapter](https://github.com/LidongWen/MultiTypeAdapter)开发的一框下拉刷新上拉加载的库
+ [SasukeRecyclerView](https://github.com/LidongWen/SasukeRecyclerView):基于[MultiType-Adapter](https://github.com/LidongWen/MultiTypeAdapter)开发的一框下拉刷新上拉加载的库
 
 # Thrank
 - [鸿洋](https://github.com/hongyangAndroid/baseAdapter): 空白页功能与上拉加载功能 我拿过来稍微做了修改

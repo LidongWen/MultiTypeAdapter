@@ -66,7 +66,11 @@ recyclerView.setAdapter(adapter);
 ```java
 public class ItemVIew01 extends MultiItemView<Bean01> {
 
-
+    @NonNull
+    @Override
+    public int getLayoutId() {
+        return R.layout.item_one;
+    }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Bean01 item, int position) {
         holder.setText(R.id.tv_item01,item.title);

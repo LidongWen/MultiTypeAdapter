@@ -206,11 +206,11 @@ activity
 ```
 示例查看：[Empty Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/empty/EmptyActivity.java)
 # 混合布局拖拽实现
-// todo  待做
+[混合布局拖拽实现](https://github.com/LidongWen/MultiTypeAdapter/tree/master/app/src/main/java/com/wenld/app_multitypeadapter/itemTouch)
 # 吸顶效果
-[吸顶效果](https://github.com/LidongWen/MultiTypeAdapter/blob/master/doc/sticky.md)
+[吸顶效果](http://www.jianshu.com/p/bb4c8c16d894)
 # 设置复用数量
-// todo  待做
+// 2.0版本
 
 # 扩展
  [SasukeRecyclerView](https://github.com/LidongWen/SasukeRecyclerView):基于[MultiType-Adapter](https://github.com/LidongWen/MultiTypeAdapter)开发的一框下拉刷新上拉加载的库
@@ -223,26 +223,26 @@ activity
 # 一些说明
 大家可能咋一看，会认为我抄袭  [drakeet](https://github.com/drakeet)的代码，我虽然有学习过他的代码，其中也让我受益良多，不论是技术点还是架构松耦合方面的知识，但是，这份开源库虽然使用上与之相似，但完全手写，不存在抄袭 [drakeet](https://github.com/drakeet) , 而且 是否抄袭 请大家阅读完源码之后再做评论，谢谢。
 
-> ##  V 0.1.3
->  - 检测并修复切换悬浮头部状态时发生内存泄漏；
+> ** V 0.1.3**
+>  　·检测并修复切换悬浮头部状态时发生内存泄漏；
 ![检测内存泄漏-内存占用图](http://upload-images.jianshu.io/upload_images/1599843-000f0148c0237c90.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-> ##  V 0.1.2
->  - 支持悬浮头部触摸事件，点击事件，长按事件等
->  - multiTypeAdapter支持restful风格调用
-> ##  V 0.1.1
-> - MultiItemView 改变，更加简洁、直观
-> - 新增 吸顶功能 [吸顶效果](https://github.com/LidongWen/MultiTypeAdapter/blob/master/doc/sticky.md)
+>**V 0.1.2**
+>  　·支持悬浮头部触摸事件，点击事件，长按事件等
+>  　·multiTypeAdapter支持restful风格调用
+> **V 0.1.1**
+>   　·MultiItemView 改变，更加简洁、直观
+>   　·新增 悬浮吸顶头部功能 [快速打造Recyclerview悬浮吸顶头部](https://github.com/LidongWen/MultiTypeAdapter/blob/master/doc/sticky.md)
 >
-> ![0.1.1 版本 ](http://upload-images.jianshu.io/upload_images/1599843-b2506d6cec4d9f8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-> ##  V 0.1.1
->  - 支持头部吸顶功能
-> ##  V 0.0.1
->  - 实现一对一关系功能
->  - 实现一对多关系功能
->  - 事件监听
->  - 支持网格、瀑布流、线性布局
->  - 上拉加载功能
->  - 数据为空时过渡界面展示功能
+> ![](http://upload-images.jianshu.io/upload_images/1599843-b2506d6cec4d9f8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+>**V 0.1.1**
+>  　·支持头部吸顶功能
+>**V 0.0.1**
+>  　·实现一对一关系功能
+>  　·实现一对多关系功能
+>  　·事件监听
+>  　·支持网格、瀑布流、线性布局
+>  　·上拉加载功能
+>  　·数据为空时过渡界面展示功能
 
 代码传送门：[戳我!!!](https://github.com/LidongWen/MultiTypeAdapter)
 

@@ -223,26 +223,28 @@ activity
 # 一些说明
 大家可能咋一看，会认为我抄袭  [drakeet](https://github.com/drakeet)的代码，我虽然有学习过他的代码，其中也让我受益良多，不论是技术点还是架构松耦合方面的知识，但是，这份开源库虽然使用上与之相似，但完全手写，不存在抄袭 [drakeet](https://github.com/drakeet) , 而且 是否抄袭 请大家阅读完源码之后再做评论，谢谢。
 
-> ** V 0.1.3**
->  　·检测并修复切换悬浮头部状态时发生内存泄漏；
-![检测内存泄漏-内存占用图](http://upload-images.jianshu.io/upload_images/1599843-000f0148c0237c90.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
->**V 0.1.2**
->  　·支持悬浮头部触摸事件，点击事件，长按事件等
->  　·multiTypeAdapter支持restful风格调用
-> **V 0.1.1**
->   　·MultiItemView 改变，更加简洁、直观
->   　·新增 悬浮吸顶头部功能 [快速打造Recyclerview悬浮吸顶头部](https://github.com/LidongWen/MultiTypeAdapter/blob/master/doc/sticky.md)
+> **V 0.1.3**
+> - 检测并修复切换悬浮头部状态时发生内存泄漏；
 >
-> ![](http://upload-images.jianshu.io/upload_images/1599843-b2506d6cec4d9f8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
->**V 0.1.1**
->  　·支持头部吸顶功能
+![检测内存泄漏-内存占用图](http://upload-images.jianshu.io/upload_images/1599843-000f0148c0237c90.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+>
+>**V 0.1.2**
+> - 支持悬浮头部触摸事件，点击事件，长按事件等
+> - multiTypeAdapter支持restful风格调用
+>
+> **V 0.1.1**
+>  - MultiItemView 改变，更加简洁、直观
+>  - 新增 悬浮吸顶头部功能 [快速打造Recyclerview悬浮吸顶头部](https://github.com/LidongWen/MultiTypeAdapter/blob/master/doc/sticky.md)
+>
+>![](http://upload-images.jianshu.io/upload_images/1599843-b2506d6cec4d9f8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+>
 >**V 0.0.1**
->  　·实现一对一关系功能
->  　·实现一对多关系功能
->  　·事件监听
->  　·支持网格、瀑布流、线性布局
->  　·上拉加载功能
->  　·数据为空时过渡界面展示功能
+> - 实现一对一关系功能
+> - 实现一对多关系功能
+> - 事件监听
+> - 支持网格、瀑布流、线性布局
+> - 上拉加载功能
+> - 数据为空时过渡界面展示功能
 
 代码传送门：[戳我!!!](https://github.com/LidongWen/MultiTypeAdapter)
 

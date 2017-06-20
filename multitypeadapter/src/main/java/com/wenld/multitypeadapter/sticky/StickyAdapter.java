@@ -13,7 +13,7 @@ import com.wenld.multitypeadapter.base.ViewHolder;
 public abstract class StickyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements
         StickyHeaderAdapter<ViewHolder> {
 
-    private LayoutInflater mInflater;
+    protected LayoutInflater mInflater;
     private Context mContext;
 
     private RecyclerView.Adapter mAdapter;
@@ -46,7 +46,7 @@ public abstract class StickyAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
 
     @Override
-    public ViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
+    public ViewHolder onCreateHeaderViewHolder(ViewGroup parent,int postion) {
         final View view = mInflater.inflate(getLayoutId(), parent, false);
         return new ViewHolder(mInflater.getContext(), view);
     }

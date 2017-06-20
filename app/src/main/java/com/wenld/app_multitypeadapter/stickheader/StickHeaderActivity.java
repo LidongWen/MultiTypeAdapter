@@ -15,8 +15,8 @@ import com.wenld.app_multitypeadapter.manyData.bean.Bean01;
 import com.wenld.app_multitypeadapter.manyData.bean.Bean02;
 import com.wenld.app_multitypeadapter.manyData.bean.Bean03;
 import com.wenld.app_multitypeadapter.one2many.Bean04;
-import com.wenld.multitypeadapter.sticky.StickyControl;
 import com.wenld.multitypeadapter.MultiTypeAdapter;
+import com.wenld.multitypeadapter.sticky.StickyControl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +63,9 @@ public class StickHeaderActivity extends AppCompatActivity {
             }
             for (int i = 0; i < 2; i++) {
                 items.add(new Bean02("bean02_" + i));
+            }
+            for (int i = 0; i < 1; i++) {
+                items.add(new Bean03("bean03_" + i));
             }
         }
 

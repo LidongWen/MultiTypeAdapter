@@ -91,83 +91,72 @@ public class StickySingleHeader {
 
     @NonNull
     public ArrayList<RecyclerView.ItemDecoration> getItemDecorationsAndClearOld(RecyclerView recyclerView) {
-        Class<?> ownerClass = recyclerView.getClass();
-        Field field = null;
-        ArrayList<RecyclerView.ItemDecoration> property = new ArrayList();
+        ArrayList<RecyclerView.ItemDecoration> property = null;
         try {
-            Field[] fields = ownerClass.getDeclaredFields();
-            for (int i = 0; i < fields.length; i++) {
-                field = fields[i];
-                if (field.getName().equals("mItemDecorations")) {
-                    field.setAccessible(true);
+            property = (ArrayList) getField(recyclerView, "mItemDecorations");
+            for (Object o : property) {
+                if (o instanceof StickyHeaderDecoration) {
+                    recyclerView.removeItemDecoration((StickyHeaderDecoration) o);
                     break;
                 }
             }
-            if (property != null) {
-                property = (ArrayList) field.get(recyclerView);
-                for (RecyclerView.ItemDecoration o : property) {
-                    if (o instanceof StickyHeaderDecoration) {
-                        recyclerView.removeItemDecoration(o);
-                        break;
-                    }
-                }
-            }
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return property;
     }
 
     private void findMyListernerAndClear(RecyclerView recyclerView) {
-        Class<?> ownerClass = recyclerView.getClass();
-        Field field = null;
-        ArrayList<?> property = new ArrayList();
+
+        ArrayList<?> property = null;
         try {
-            Field[] fields = ownerClass.getDeclaredFields();
-            for (int i = 0; i < fields.length; i++) {
-                field = fields[i];
-                if (field.getName().equals("mOnItemTouchListeners")) {
-                    field.setAccessible(true);
+            property = (ArrayList) getField(recyclerView, "mOnItemTouchListeners");
+            for (Object o : property) {
+                if (o instanceof MyOnItemToucherListerner) {
+                    recyclerView.removeOnItemTouchListener((MyOnItemToucherListerner) o);
                     break;
                 }
             }
-            if (property != null) {
-                property = (ArrayList) field.get(recyclerView);
-                for (Object o : property) {
-                    if (o instanceof MyOnItemToucherListerner) {
-                        recyclerView.removeOnItemTouchListener((MyOnItemToucherListerner) o);
-                        break;
-                    }
-                }
-            }
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void notifyDataSetChanged(RecyclerView recyclerView) {
-        Class<?> ownerClass = recyclerView.getClass();
-        Field field = null;
-        ArrayList<?> property;
+        ArrayList<?> property = null;
         try {
-            Field[] fields = ownerClass.getDeclaredFields();
-            for (int i = 0; i < fields.length; i++) {
-                field = fields[i];
-                if (field.getName().equals("mItemDecorations")) {
-                    field.setAccessible(true);
-                    break;
-                }
-            }
-            property = (ArrayList) field.get(recyclerView);
+            property = (ArrayList) getField(recyclerView, "mItemDecorations");
             for (Object o : property) {
                 if (o instanceof StickyHeaderDecoration) {
                     ((StickyHeaderDecoration) o).clearHeaderCache();
                     break;
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Object getField(Object owner, String fieldName) throws Exception {
+
+        Class<?> ownerClass = owner.getClass();
+        Field field = null;
+        Object obj = new Object();
+        try {
+            Field[] fields = ownerClass.getDeclaredFields();
+            for (int i = 0; i < fields.length; i++) {
+                field = fields[i];
+                if (field.getName().equals(fieldName)) {
+                    field.setAccessible(true);
+                    obj = field.get(owner);
+                    break;
+                }
+            }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+
+        return obj;
     }
 
     private interface MyOnItemToucherListerner extends RecyclerView.OnItemTouchListener {

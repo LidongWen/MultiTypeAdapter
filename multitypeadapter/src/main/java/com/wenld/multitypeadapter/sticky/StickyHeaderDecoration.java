@@ -100,7 +100,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
         if (mHeaderCache.containsKey(key)) {
             return mHeaderCache.get(key);
         } else {
-            final RecyclerView.ViewHolder holder = mAdapter.onCreateHeaderViewHolder(parent);
+            final RecyclerView.ViewHolder holder = mAdapter.onCreateHeaderViewHolder(parent, position);
             final View header = holder.itemView;
 
             //noinspection unchecked
@@ -146,6 +146,8 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
                     int top = getHeaderTop(parent, child, header, adapterPos, layoutPos);
                     c.translate(left, top);
                     header.setTag(new Region(left, top, left + header.getMeasuredWidth(), top + header.getMeasuredHeight()));
+                    header.setTranslationX(left);
+                    header.setTranslationY(top);
                     header.draw(c);
                     c.restore();
                 } else if (hasHeader(adapterPos)) {
@@ -155,6 +157,8 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
                     if (isImmersion) left = child.getLeft();
                     int top = getHeaderTop(parent, child, header, adapterPos, layoutPos);
                     c.translate(left, top);
+                    header.setTranslationX(left);
+                    header.setTranslationY(top);
                     header.setTag(new Region(left, top, left + header.getMeasuredWidth(), top + header.getMeasuredHeight()));
                     header.draw(c);
                     c.restore();
@@ -171,22 +175,17 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
             final int count = parent.getChildCount();
             for (int i = 1; (i < count); i++) {
                 int adapterPosHere = parent.getChildAdapterPosition(parent.getChildAt(i));
-                if (adapterPosHere != RecyclerView.NO_POSITION) {
-                    if (hasHeader(adapterPosHere)) {
-                        final View next = parent.getChildAt(i);
-                        final int offset = ((int) next.getY()) - (headerHeight + getHeader(parent, adapterPosHere).itemView.getHeight());
-                        if (offset < 0) {
-                            return offset;
-                        } else {
-                            break;
-                        }
+                if (adapterPosHere != RecyclerView.NO_POSITION && hasHeader(adapterPosHere)) {
+                    final View next = parent.getChildAt(i);
+                    final int offset = ((int) next.getY()) - (header.getHeight() + getHeaderHeightForLayout(getHeader(parent, adapterPosHere).itemView));
+                    if (offset < 0) {
+                        return offset;
                     }
+                    break;
                 }
             }
-//
-            top = Math.max(0, top);
         }
-
+        top = Math.max(0, top);
         return top;
     }
 
@@ -199,7 +198,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
             if (entry.getValue().itemView.getTag() != null) {
                 Region region = (Region) entry.getValue().itemView.getTag();
                 if (x > region.left && x < region.right && y > region.top && y < region.bottom) {
-                    Log.e("region", entry.getKey()+"  "+region.left +"  "+ region.right +"  "+ region.top+"  "+ region.bottom);
+                    Log.e("region", entry.getKey() + "  " + region.left + "  " + region.right + "  " + region.top + "  " + region.bottom);
                     return entry.getValue().itemView;
                 }
             }

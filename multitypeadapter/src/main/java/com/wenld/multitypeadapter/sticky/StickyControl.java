@@ -11,7 +11,7 @@ public class StickyControl {
         return new StickySingleHeader();
     }
     //多种形式
-//    public static StickySingleHeader single(){
-//        return new StickySingleHeader();
-//    }
+    public static StickyAnyHeader any(){
+        return new StickyAnyHeader();
+    }
 }

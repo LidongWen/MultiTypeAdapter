@@ -1,12 +1,8 @@
 package com.wenld.app_multitypeadapter.manyData.adapter;
 
 import android.support.annotation.NonNull;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.wenld.app_multitypeadapter.R;
 import com.wenld.app_multitypeadapter.manyData.bean.Bean02;
 import com.wenld.multitypeadapter.base.MultiItemView;
@@ -30,14 +26,18 @@ public class ItemVIew02 extends MultiItemView<Bean02> {
     public void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Bean02 item, int position) {
         holder.setText(R.id.tv_item02, item.title);
         ImageView iv = holder.getView(R.id.iv_item02);
+        if (position  == 0 || position == 8 || position == 15|| position == 22 || position == 28|| position == 35){
+            holder.setImageResource(R.id.iv_item02,R.mipmap.fairy);
+        }else{
+            holder.setImageResource(R.id.iv_item02,R.mipmap.she);
+        }
 
-
-        Glide.with(iv.getContext())
-                .load(item.imgUrl)
-//                .placeholder(R.mipmap.ic_launcher) // can also be a drawable
-//                .error(R.mipmap.cheese) // will be displayed if the image cannot be loaded
-                .centerCrop()
-                .into(iv);
+//        Glide.with(iv.getContext())
+//                .load(item.imgUrl)
+////                .placeholder(R.mipmap.ic_launcher) // can also be a drawable
+////                .error(R.mipmap.cheese) // will be displayed if the image cannot be loaded
+//                .centerCrop()
+//                .into(iv);
 
     }
 

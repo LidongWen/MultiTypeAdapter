@@ -63,23 +63,38 @@ public class StickySingleHeader {
 
         recyclerView.addItemDecoration(decor, property.size());
         recyclerView.addOnItemTouchListener(new MyOnItemToucherListerner() {
+            boolean b = false;
+
             @Override
             public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         View view = decor.findHeaderView((int) event.getX(), (int) event.getY());
-                        if (view != null)
+                        if (view != null) {
+                            b = true;
                             return true;
+                        }
+                    case MotionEvent.ACTION_UP:
+                        View view2 = decor.findHeaderView((int) event.getX(), (int) event.getY());
+                        if (b && view2 != null) {
+                            b = false;
+                            view2.performClick();
+                            return true;
+                        }
+                        b = false;
                 }
                 return false;
             }
 
             @Override
             public void onTouchEvent(RecyclerView rv, MotionEvent event) {
-                View view2 = decor.findHeaderView((int) event.getX(), (int) event.getY());
-                if (view2 != null) {
-                    view2.performClick();
-                }
+//                switch (event.getAction()) {
+//                    case MotionEvent.ACTION_UP:
+//                        View view2 = decor.findHeaderView((int) event.getX(), (int) event.getY());
+//                        if (view2 != null) {
+//                            view2.performClick();
+//                        }
+//                }
             }
 
             @Override

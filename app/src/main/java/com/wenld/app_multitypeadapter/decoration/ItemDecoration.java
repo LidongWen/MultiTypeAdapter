@@ -37,9 +37,10 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
             Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
 //        int position = parent.getChildLayoutPosition(view);
 //        if (spanSizeLookup.getSpanSize(position) < 4) {
-            outRect.left = space;
-            outRect.right=space;
-            outRect.bottom = space;
+        outRect.top = space;
+        outRect.left = space;
+        outRect.right = space;
+        outRect.bottom = space;
 //        }
     }
 }

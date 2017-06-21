@@ -27,8 +27,8 @@
 - [一些说明](https://github.com/LidongWen/MultiTypeAdapter)
 
 # 悬浮吸顶效果
-
-![loading.gif](https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/one.gif)![loading.gif](https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/two.gif)
+<img width="500" height="300" src="https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/one.gif"></img>
+<img width="500" height="300" src="https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/two.gif"></img>
 
 
 ```
@@ -43,7 +43,8 @@ dependencies {
         compile 'com.github.LidongWen:MultiTypeAdapter:0.1.1'
 }
 ```
-# 使用
+# 使用 类型1
+添加分组
 **1、 自定义一个 StickyAdapter**
  在这里你可以设置 header 布局，header的位置
 ```
@@ -78,6 +79,34 @@ StickyControl.single()          // 设置单个
         .adapter(stickyTestAdapter)         //
         .setRecyclerView(recyclerView)
         .immersion()                    // 是否嵌入
+        .togo();
+```
+# 使用 类型2
+在内容中选取悬浮itemView   下面这种效果
+<img width="500" height="300" src="https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/sticky_all.gif"></img>
+
+```
+public class StickySigleTwoAdapter extends StickyAnyAdapter {
+    public StickySigleTwoAdapter(Context context, RecyclerView.Adapter mAdapter) {
+        super(context, mAdapter);
+    }
+    @Override
+    public boolean isHeader(int position) {  //选取悬浮item
+        if (position  == 0 || position == 8 || position == 14|| position == 20 || position == 28|| position == 32) {
+            return true;
+        } else
+            return false;
+    }
+}
+```
+activity
+```
+stickyTestAdapter = new StickySigleTwoAdapter(this, adapter);
+recyclerView.setAdapter(stickyTestAdapter);
+StickyControl.any()
+        .adapter(stickyTestAdapter)
+        .setRecyclerView(recyclerView)
+//                .immersion()
         .togo();
 ```
 

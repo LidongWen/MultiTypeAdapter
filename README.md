@@ -40,7 +40,7 @@ repositories {
 }
 // yout project build.gradle
 dependencies {
-        compile 'com.github.LidongWen:MultiTypeAdapter:0.1.3'
+        compile 'com.github.LidongWen:MultiTypeAdapter:0.1.4'
 }
 ```
 # 单数据
@@ -208,7 +208,9 @@ activity
 # 混合布局拖拽实现
 [混合布局拖拽实现](https://github.com/LidongWen/MultiTypeAdapter/tree/master/app/src/main/java/com/wenld/app_multitypeadapter/itemTouch)
 # 吸顶效果
-[吸顶效果](http://www.jianshu.com/p/bb4c8c16d894)
+[悬浮吸顶](http://www.jianshu.com/p/bb4c8c16d894)
+<img width="500" height="300" src="https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/sticky_all.gif"></img>
+
 # 设置复用数量
 // 2.0版本
 
@@ -223,6 +225,10 @@ activity
 # 一些说明
 大家可能咋一看，会认为我抄袭  [drakeet](https://github.com/drakeet)的代码，我虽然有学习过他的代码，其中也让我受益良多，不论是技术点还是架构松耦合方面的知识，但是，这份开源库虽然使用上与之相似，但完全手写，不存在抄袭 [drakeet](https://github.com/drakeet) , 而且 是否抄袭 请大家阅读完源码之后再做评论，谢谢。
 
+> **V 0.1.4**
+> - 悬浮吸顶效果增强：可随意搭配itemVIew为悬浮布局
+> - 事件处理优化
+>
 > **V 0.1.3**
 > - 检测并修复切换悬浮头部状态时发生内存泄漏；
 >

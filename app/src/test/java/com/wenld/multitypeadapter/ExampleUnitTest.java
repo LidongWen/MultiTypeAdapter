@@ -2,8 +2,6 @@ package com.wenld.multitypeadapter;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -12,6 +10,9 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+//        assertEquals(4, 2 + 2);
+        for (int j = 1; (j < 3) && (j < 2); j++) {
+            System.out.println(""+j);
+        }
     }
 }

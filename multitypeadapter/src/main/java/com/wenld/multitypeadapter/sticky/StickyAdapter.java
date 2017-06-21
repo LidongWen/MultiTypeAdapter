@@ -16,7 +16,7 @@ public abstract class StickyAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     protected LayoutInflater mInflater;
     private Context mContext;
 
-    private RecyclerView.Adapter mAdapter;
+    protected RecyclerView.Adapter mAdapter;
 
     @Override
     public int getItemViewType(int position) {

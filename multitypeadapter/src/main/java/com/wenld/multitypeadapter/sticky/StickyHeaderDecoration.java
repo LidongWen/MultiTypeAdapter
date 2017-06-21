@@ -19,7 +19,6 @@ package com.wenld.multitypeadapter.sticky;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +26,6 @@ import android.view.ViewGroup;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A sticky header decoration for android's RecyclerView.
- */
 public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
 
     private Map<Long, RecyclerView.ViewHolder> mHeaderCache;
@@ -67,10 +63,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
         outRect.set(0, headerHeight, 0, 0);
     }
 
-    /**
-     * Clears the header view cache. Headers will be recreated and
-     * rebound on list scroll after this method has been called.
-     */
+
     public void clearHeaderCache() {
         mHeaderCache.clear();
     }
@@ -123,9 +116,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+
     @Override
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         final int childCount = parent.getChildCount();
@@ -198,7 +189,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
             if (entry.getValue().itemView.getTag() != null) {
                 Region region = (Region) entry.getValue().itemView.getTag();
                 if (x > region.left && x < region.right && y > region.top && y < region.bottom) {
-                    Log.e("region", entry.getKey() + "  " + region.left + "  " + region.right + "  " + region.top + "  " + region.bottom);
+//                    Log.e("region", entry.getKey() + "  " + region.left + "  " + region.right + "  " + region.top + "  " + region.bottom);
                     return entry.getValue().itemView;
                 }
             }

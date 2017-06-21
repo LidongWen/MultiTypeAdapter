@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <ImageView
+        android:id="@+id/iv_item02"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:id="@+id/iv_item02"/>
+        android:layout_height="140dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/she" />
 
     <TextView
+        android:id="@+id/tv_item02"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:id="@+id/tv_item02"
-        android:padding="5dp" />
-</LinearLayout>
+        android:padding="5dp"
+        android:textColor="#ffffff" />
+</RelativeLayout>

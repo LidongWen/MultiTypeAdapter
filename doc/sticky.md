@@ -7,6 +7,10 @@
 [MultiType-Adapter](https://github.com/LidongWen/MultiTypeAdapter)
 是一款轻量级支持多数据类型的 RecyclerView 适配器; 使用简单，完全解耦;
 
+-----
+
+悬浮吸顶功能分为两种模式，一种是自己添加布局作为头部，另一种则是从原有itemView中选取任意itemVIew作为悬浮头部布局；
+
 - [总览](https://github.com/LidongWen/MultiTypeAdapter)
 - [特性](https://github.com/LidongWen/MultiTypeAdapter)
 - [基础用法](https://github.com/LidongWen/MultiTypeAdapter)
@@ -81,8 +85,8 @@ StickyControl.single()          // 设置单个
         .immersion()                    // 是否嵌入
         .togo();
 ```
-# 使用 类型2
-在内容中选取悬浮itemView   下面这种效果
+# 使用 模式2
+在内容itemView中选取悬浮 头部；下面这种效果
 <img width="500" height="300" src="https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/sticky_all.gif"></img>
 
 ```

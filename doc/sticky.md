@@ -87,7 +87,7 @@ StickyControl.single()          // 设置单个
 ```
 # 使用 模式2
 在内容itemView中选取悬浮 头部；下面这种效果
-<img width="500" height="300" src="https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/sticky_all.gif"></img>
+<img width="300" height="500" src="https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/sticky_all.gif"></img>
 
 ```
 public class StickySigleTwoAdapter extends StickyAnyAdapter {

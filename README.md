@@ -209,7 +209,7 @@ activity
 [混合布局拖拽实现](https://github.com/LidongWen/MultiTypeAdapter/tree/master/app/src/main/java/com/wenld/app_multitypeadapter/itemTouch)
 # 吸顶效果
 [悬浮吸顶](http://www.jianshu.com/p/bb4c8c16d894)
-<img width="500" height="300" src="https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/sticky_all.gif"></img>
+<img width="300" height="500" src="https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/sticky_all.gif"></img>
 
 # 设置复用数量
 // 2.0版本

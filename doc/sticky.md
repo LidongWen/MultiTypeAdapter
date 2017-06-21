@@ -31,8 +31,8 @@
 - [一些说明](https://github.com/LidongWen/MultiTypeAdapter)
 
 # 悬浮吸顶效果
-<img width="500" height="300" src="https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/one.gif"></img>
-<img width="500" height="300" src="https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/two.gif"></img>
+<img width="300" height="500" src="https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/one.gif"></img>
+<img width="300" height="500" src="https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/two.gif"></img>
 
 
 ```

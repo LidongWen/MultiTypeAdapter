@@ -40,7 +40,7 @@ repositories {
 }
 // yout project build.gradle
 dependencies {
-        compile 'com.github.LidongWen:MultiTypeAdapter:0.1.4'
+        compile 'com.github.LidongWen:MultiTypeAdapter:0.1.5'
 }
 ```
 # 单数据
@@ -225,6 +225,9 @@ activity
 # 一些说明
 大家可能咋一看，会认为我抄袭  [drakeet](https://github.com/drakeet)的代码，我虽然有学习过他的代码，其中也让我受益良多，不论是技术点还是架构松耦合方面的知识，但是，这份开源库虽然使用上与之相似，但完全手写，不存在抄袭 [drakeet](https://github.com/drakeet) , 而且 是否抄袭 请大家阅读完源码之后再做评论，谢谢。
 
+> **V 0.1.5**
+> - 悬浮吸顶滑动速度优化
+>
 > **V 0.1.4**
 > - 悬浮吸顶效果增强：可随意搭配itemVIew为悬浮布局
 > - 事件处理优化

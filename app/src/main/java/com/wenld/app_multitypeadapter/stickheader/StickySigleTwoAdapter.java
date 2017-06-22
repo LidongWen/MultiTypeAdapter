@@ -14,7 +14,7 @@ public class StickySigleTwoAdapter extends StickyAnyAdapter {
     @Override
     public boolean isHeader(int position) {
 
-        if (position  == 0 || position == 8 || position == 15|| position == 22 || position == 28) {
+        if (position  == 0 || position == 8 || position == 15|| position == 21|| position == 28) {
             return true;
         } else
             return false;

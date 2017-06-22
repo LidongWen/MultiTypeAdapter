@@ -56,17 +56,26 @@ public class StickyAnyDecoration extends RecyclerView.ItemDecoration {
         return mAdapter.isHeader(position);
     }
 
+    List<Long> keyList;
+    int lastMaxPos = -1;
+
     private int getThisOrLastHeaderPos(int position) {
-        List<Long> keyList = new ArrayList(mHeaderCache.keySet());
-        Collections.sort(keyList, new Comparator<Long>() {
-            @Override
-            public int compare(Long e1, Long e2) {
-                return e1.compareTo(e2);
-            }
-        });
+        if (lastMaxPos < 0 || (lastMaxPos > -1 && lastMaxPos < position)) {
+            keyList = new ArrayList(mHeaderCache.keySet());
+            Collections.sort(keyList, new Comparator<Long>() {
+                @Override
+                public int compare(Long e1, Long e2) {
+                    return e1.compareTo(e2);
+                }
+            });
+        }
+        if (keyList == null) {
+            return -1;
+        }
         for (int i = keyList.size() - 1; i >= 0; i--) {
             int s = keyList.get(i).intValue();
             if (position == s || position > s) {
+                lastMaxPos = s;
                 return s;
             }
         }

@@ -42,5 +42,9 @@
         <activity
             android:name=".stickheader.StickHeaderSingleActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".mix.TimeLineActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 </manifest>

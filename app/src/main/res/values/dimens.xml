@@ -2,4 +2,5 @@
 <resources>
     <dimen name="normal_space">2dp</dimen>
     <dimen name="btn_space">5dp</dimen>
+    <dimen name="timeLine_space">18dp</dimen>
 </resources>

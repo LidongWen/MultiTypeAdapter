@@ -12,6 +12,7 @@ import com.wenld.app_multitypeadapter.empty.EmptyActivity;
 import com.wenld.app_multitypeadapter.itemTouch.ItemTouchActivity;
 import com.wenld.app_multitypeadapter.manyData.MultiDataActivity;
 import com.wenld.app_multitypeadapter.mix.MixActivity;
+import com.wenld.app_multitypeadapter.mix.TimeLineActivity;
 import com.wenld.app_multitypeadapter.mix.WaterFallActivity;
 import com.wenld.app_multitypeadapter.one2many.One2ManyActivity;
 import com.wenld.app_multitypeadapter.pull_load.PullLoadActivity;
@@ -69,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         list.add(new ItemClass("itemTouchHepler", ItemTouchActivity.class));
         list.add(new ItemClass("StickHeader", StickHeaderActivity.class));
         list.add(new ItemClass("StickHeaderSingle",StickHeaderSingleActivity.class));
+        list.add(new ItemClass("TimeLine",TimeLineActivity.class));
+
 
         adapter.setItems(list);
         adapter.notifyDataSetChanged();

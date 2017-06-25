@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Card">
+        <attr name="size" format="dimension|reference" />
+        <attr name="bgColor" format="color|reference" />
+    </declare-styleable>
+</resources>

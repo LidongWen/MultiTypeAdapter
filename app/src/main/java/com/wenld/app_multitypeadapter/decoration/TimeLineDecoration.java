@@ -7,6 +7,8 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.wenld.app_multitypeadapter.R;
 
@@ -21,7 +23,8 @@ public class TimeLineDecoration extends RecyclerView.ItemDecoration {
     Drawable drawable;
     Drawable verticalLine;
     Drawable horizontalLine;
-
+    Rect mBounds = new Rect();
+    Rect rect = new Rect(0, 0, 0, 0);
 
     public TimeLineDecoration(Context context, int distance) {
         mContext = context;
@@ -41,56 +44,86 @@ public class TimeLineDecoration extends RecyclerView.ItemDecoration {
         } else if (parent.getChildAdapterPosition(view) == 1) {
             outRect.top = 4 * distance;
         }
-
-        if (parent.getChildAdapterPosition(view) % 2 == 0) {
-            outRect.left = 20;
-        } else {
-            outRect.right = 20;
-        }
     }
 
     @Override
-    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-        drawHorizontal(c, parent);
-        drawVertical(c, parent);
-    }
+    public void onDraw(Canvas canvas, RecyclerView parent, RecyclerView.State state) {
 
-    public void drawHorizontal(Canvas c, RecyclerView parent) {
-        final int top = parent.getPaddingTop();
-        final int bottom = parent.getHeight() - parent.getPaddingBottom();
-        final int parentWidth = parent.getMeasuredWidth();
-
-        verticalLine.setBounds(parentWidth / 2 - 1, top, parentWidth / 2 + 1,bottom);
-        verticalLine.draw(c);
-    }
-
-    public void drawVertical(Canvas c, RecyclerView parent) {
-        final int parentWidth = parent.getMeasuredWidth();
-
-        final int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount; i++) {//-1最后一个不画
-            final View child = parent.getChildAt(i);
-
-            final int top = child.getTop() + (child.getBottom() - child.getTop()) / 2 - drawable.getIntrinsicHeight() / 2;
-            final int bottom = top + drawable.getIntrinsicHeight();
-
-            int horizontalLineLeft = child.getRight();
-            int horizontalLineRight = parentWidth / 2;
-            int horizontalLineTop = child.getTop() + (child.getBottom() - child.getTop()) / 2;
-
-            if (child.getLeft()<parentWidth/2) {
-                horizontalLineLeft = parentWidth / 2;
-                horizontalLineRight = child.getLeft();
-            }
-
-            horizontalLine.setBounds(horizontalLineLeft, horizontalLineTop, horizontalLineRight, horizontalLineTop + 2);
-            horizontalLine.draw(c);
-
-            int drawableLeft = parentWidth / 2 - drawable.getIntrinsicWidth() / 2;
-            int drawableRight = parentWidth / 2 + drawable.getIntrinsicWidth() / 2;
-
-            drawable.setBounds(drawableLeft, top, drawableRight, bottom);
-            drawable.draw(c);
+        canvas.save();
+        int top;
+        int bottom;
+        if (parent.getClipToPadding()) {
+            top = parent.getPaddingTop();
+            bottom = parent.getHeight() - parent.getPaddingBottom();
+            canvas.clipRect(parent.getPaddingLeft(), top, parent.getWidth() - parent.getPaddingRight(), bottom);
+        } else {
+            top = 0;
+            bottom = parent.getHeight();
         }
+
+        //画线
+        int parentWidth = parent.getWidth() - parent.getPaddingLeft() - parent.getPaddingRight();
+        verticalLine.setBounds(parentWidth / 2 - 1, top, parentWidth / 2 + 1, bottom);
+        verticalLine.draw(canvas);
+
+        int childCount = parent.getChildCount();
+        for (int i = 0; i < childCount; ++i) {
+            final View child = parent.getChildAt(i);
+            parent.getLayoutManager().getDecoratedBoundsWithMargins(child, this.mBounds);
+//            Log.e("mBounds", child.getLeft() + "   " + child.getTop() + "   " + child.getRight() + "   " +
+//                    child.getBottom() + "   " + child.getWidth() + "   " + child.getHeight() + "   " + mBounds.toString());
+            // 计算水平线摆放的位置、摆放
+            if (parent.getChildAdapterPosition(child) % 2 == 0) {
+                rect.left = child.getRight();
+                rect.top = child.getTop() + child.getHeight() / 3;
+                rect.right = mBounds.right;
+                rect.bottom = rect.top + 1;
+            } else if (parent.getChildAdapterPosition(child) % 2 == 1) {
+                rect.left = parentWidth / 2;
+                rect.top = child.getTop() + child.getHeight() / 3;
+                rect.right = child.getLeft();
+                rect.bottom = rect.top + 1;
+            }
+            horizontalLine.setBounds(rect);
+            horizontalLine.draw(canvas);
+
+            int w = drawable.getIntrinsicWidth();
+            int h = drawable.getIntrinsicHeight();
+            // 计算图片摆放位置、摆放
+            rect.left = parentWidth / 2 - w / 2;
+            rect.top = child.getTop() + child.getHeight() / 3 - h / 2;
+            rect.right = rect.left + w;
+            rect.bottom = rect.top + h;
+
+            drawable.setBounds(rect);
+            drawable.draw(canvas);
+        }
+        canvas.restore();
+    }
+
+    TextView header;
+
+    @Override
+    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+        if (header == null) {
+            header = new TextView(parent.getContext());
+            header.setText("I am header!");
+            header.setBackgroundResource(R.color.colorAccent);
+            header.setTextColor(0xFFFFFFFF);
+
+            int widthSpec = View.MeasureSpec.makeMeasureSpec(parent.getWidth(), View.MeasureSpec.UNSPECIFIED);
+            int heightSpec = View.MeasureSpec.makeMeasureSpec(parent.getHeight(), View.MeasureSpec.UNSPECIFIED);
+            int childWidth = ViewGroup.getChildMeasureSpec(widthSpec,
+                    parent.getPaddingLeft() + parent.getPaddingRight(), parent.getLayoutParams().width);
+            int childHeight = ViewGroup.getChildMeasureSpec(heightSpec,
+                    parent.getPaddingTop() + parent.getPaddingBottom(), parent.getLayoutParams().height);
+
+            header.measure(childWidth, childHeight);
+            header.layout(0, 0, header.getMeasuredWidth(), header.getMeasuredHeight());
+        }
+        c.save();
+        c.translate(10, 10);
+        header.draw(c);
+        c.restore();
     }
 }

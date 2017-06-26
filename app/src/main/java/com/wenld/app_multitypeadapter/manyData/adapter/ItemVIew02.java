@@ -26,11 +26,6 @@ public class ItemVIew02 extends MultiItemView<Bean02> {
     public void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Bean02 item, int position) {
         holder.setText(R.id.tv_item02, item.title);
         ImageView iv = holder.getView(R.id.iv_item02);
-        if (position  == 0 || position == 8 || position == 15|| position == 22 || position == 28|| position == 35){
-            holder.setImageResource(R.id.iv_item02,R.mipmap.fairy);
-        }else{
-            holder.setImageResource(R.id.iv_item02,R.mipmap.she);
-        }
 
 //        Glide.with(iv.getContext())
 //                .load(item.imgUrl)

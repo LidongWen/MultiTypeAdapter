@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.wenld.app_multitypeadapter.R;
-import com.wenld.app_multitypeadapter.decoration.ItemDecoration;
 import com.wenld.app_multitypeadapter.decoration.TimeLineDecoration;
 import com.wenld.app_multitypeadapter.manyData.adapter.ItemVIew01;
 import com.wenld.app_multitypeadapter.manyData.adapter.ItemVIew02;
@@ -41,7 +40,7 @@ public class TimeLineActivity extends AppCompatActivity {
         setLayoutManager(recyclerView);
 
         int space = getResources().getDimensionPixelSize(R.dimen.normal_space);
-        recyclerView.addItemDecoration(new ItemDecoration(space));
+//        recyclerView.addItemDecoration(new ItemDecoration(space));
         recyclerView.addItemDecoration(new TimeLineDecoration(this,getResources().getDimensionPixelOffset(R.dimen.timeLine_space)));
         recyclerView.setAdapter(adapter);
 

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.wenld.app_multitypeadapter.R;
+import com.wenld.app_multitypeadapter.customLayoutManager.layoutManager.MyLayoutManager;
 import com.wenld.app_multitypeadapter.decoration.ItemBottomDecoration;
 import com.wenld.app_multitypeadapter.stickheader.bean.GroupSingleBean;
 import com.wenld.multitypeadapter.sticky.StickyAdapter;
@@ -30,7 +31,7 @@ public class StickHeaderSingleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multidata);
         recyclerView = (RecyclerView) findViewById(R.id.rlv_multidata);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new MyLayoutManager());
         recyclerView.addItemDecoration(new ItemBottomDecoration(getResources().getDimensionPixelSize(R.dimen.normal_space)));
 
 
@@ -46,26 +47,26 @@ public class StickHeaderSingleActivity extends AppCompatActivity {
         stickyTestAdapter = new StickySigleAdapter(this, adapter);
         stickyTestAdapter.setGroupPositions(groupPositions);
         stickyTestAdapter.setGroupBeans(groupBeans);
-        StickyControl.single()
-                .adapter(stickyTestAdapter)
-                .setRecyclerView(recyclerView)
-                .togo();
+//        StickyControl.single()
+//                .adapter(stickyTestAdapter)
+//                .setRecyclerView(recyclerView)
+//                .togo();
         recyclerView.setAdapter(stickyTestAdapter);
 
 
         adapter.setOnItemClickListener(new OnItemClickListener<String>() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, String o, int position) {
-                changeData();
-
-                StickyControl.single()
-                        .adapter(stickyTestAdapter)
-                        .setRecyclerView(recyclerView)
-                        .immersion()
-                        .togo();
-                stickyTestAdapter.setGroupPositions(groupPositions);
-                stickyTestAdapter.setGroupBeans(groupBeans);
-                stickyTestAdapter.notifyDataSetChanged();
+//                changeData();
+//
+//                StickyControl.single()
+//                        .adapter(stickyTestAdapter)
+//                        .setRecyclerView(recyclerView)
+//                        .immersion()
+//                        .togo();
+//                stickyTestAdapter.setGroupPositions(groupPositions);
+//                stickyTestAdapter.setGroupBeans(groupBeans);
+//                stickyTestAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -113,11 +114,10 @@ public class StickHeaderSingleActivity extends AppCompatActivity {
 
     private void netWork() {
         groupBeans = new ArrayList<>();
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < 2; j++) {
             List<String> childs = new ArrayList<>();
-            childs.add("click me change the header");
             for (int i = 0; i < 5; i++) {
-                childs.add("click me !  childe_" + j + " _" + i);
+                childs.add("click me ! \n\n\n\n childe_" + j + " _" + i);
             }
             GroupSingleBean groupBean = new GroupSingleBean(" groupTitle_" + j, childs);
             groupBeans.add(groupBean);

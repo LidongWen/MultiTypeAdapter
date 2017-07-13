@@ -46,6 +46,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
             inflater = LayoutInflater.from(parent.getContext());
         }
         MultiItemView multiItemView = typePool.getMultiItemView(viewType);
+        typePool.setMaxRecycledViews(parent, viewType);
         return new ViewHolder(inflater.getContext(), inflater.inflate(multiItemView.getLayoutId(), parent, false));
     }
 

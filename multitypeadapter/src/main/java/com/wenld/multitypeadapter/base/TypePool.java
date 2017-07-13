@@ -2,8 +2,7 @@ package com.wenld.multitypeadapter.base;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-
-import com.wenld.multitypeadapter.base.MultiItemView;
+import android.view.ViewGroup;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -22,11 +21,13 @@ public class TypePool {
     final Map<Class<?>, CopyOnWriteArrayList<MultiItemView>> calss2ItemViewMap;
     final Map<Integer, MultiItemView> itemViewType2itemViewMap;
     final Map<MultiItemView, Integer> itemViewMap2itemViewType;
+    final Map<Integer, Integer> itemViewType2RecyclerCount;
 
     public TypePool() {
         calss2ItemViewMap = new ConcurrentHashMap<>();
         itemViewType2itemViewMap = new ConcurrentHashMap<>();
         itemViewMap2itemViewType = new ConcurrentHashMap<>();
+        itemViewType2RecyclerCount = new ConcurrentHashMap<>();
     }
 
     public <T> void register(@NonNull Class<? extends T> clazz, @NonNull MultiItemView<T> multiItemView) {
@@ -65,5 +66,13 @@ public class TypePool {
 
     public MultiItemView getMultiItemView(int itemViewType) {
         return itemViewType2itemViewMap.get(itemViewType);
+    }
+
+    public void setMaxRecycledViews(ViewGroup recyclerView, int itemType) {
+        if (!itemViewType2RecyclerCount.containsKey(itemType)) {
+            MultiItemView multiItemView = itemViewType2itemViewMap.get(itemType);
+            itemViewType2RecyclerCount.put(itemType, multiItemView.getMaxRecycleCount());
+            ((RecyclerView) recyclerView).getRecycledViewPool().setMaxRecycledViews(itemType, multiItemView.getMaxRecycleCount());
+        }
     }
 }

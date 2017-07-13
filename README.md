@@ -40,7 +40,7 @@ repositories {
 }
 // yout project build.gradle
 dependencies {
-        compile 'com.github.LidongWen:MultiTypeAdapter:0.1.5'
+        compile 'com.github.LidongWen:MultiTypeAdapter:0.1.6'
 }
 ```
 # 单数据
@@ -212,7 +212,14 @@ activity
 <img width="300" height="500" src="https://github.com/LidongWen/MultiTypeAdapter/blob/master/img/sticky_all.gif"></img>
 
 # 设置复用数量
-// 2.0版本
+```
+public class ItemVIew01 extends MultiItemView<Bean01> {
+
+    public void getMaxRecycleCount(){
+        return 5;
+    }
+}
+```
 
 # 扩展
  [SasukeRecyclerView](https://github.com/LidongWen/SasukeRecyclerView):基于[MultiType-Adapter](https://github.com/LidongWen/MultiTypeAdapter)开发的一框下拉刷新上拉加载的库

@@ -52,12 +52,12 @@ public class TypePool {
         calss2ItemViewMap.put(clazz, list);
     }
 
-    public <T> int getItemViewType(@NonNull T item) {
+    public <T> int getItemViewType(@NonNull T item,int position) {
 
         Class<?> clazz = item.getClass();
         CopyOnWriteArrayList<MultiItemView> list = calss2ItemViewMap.get(clazz);
         for (MultiItemView multiItemView : list) {
-            if (multiItemView.isForViewType(item, 0)) {
+            if (multiItemView.isForViewType(item, position)) {
                 return itemViewMap2itemViewType.get(multiItemView);
             }
         }

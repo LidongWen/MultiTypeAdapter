@@ -37,7 +37,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
     @Override
     public int getItemViewType(int position) {
         Object item = items.get(position);
-        return typePool.getItemViewType(item);
+        return typePool.getItemViewType(item, position);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
 
     public void onViewAttachedToWindow(RecyclerView.ViewHolder holder, int postion) {
         if (postion < getItemCount()) {
-            typePool.getMultiItemView(typePool.getItemViewType(items.get(postion))).onViewAttachedToWindow(holder);
+            typePool.getMultiItemView(typePool.getItemViewType(items.get(postion),postion)).onViewAttachedToWindow(holder);
         }
     }
 

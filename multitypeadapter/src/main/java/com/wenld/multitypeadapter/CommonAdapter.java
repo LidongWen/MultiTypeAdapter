@@ -3,8 +3,6 @@ package com.wenld.multitypeadapter;
 import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
 
 import com.wenld.multitypeadapter.base.MultiItemView;
 import com.wenld.multitypeadapter.base.ViewHolder;
@@ -41,7 +39,29 @@ public abstract class CommonAdapter<T> extends MultiTypeAdapter {
         });
     }
 
+    public CommonAdapter(Context context, Class<? extends T> clazz, @LayoutRes final int layoutId,final int maxRecyclerCount) {
+        super();
+        mContext = context;
+        this.layoutId = layoutId;
+        register(clazz, new MultiItemView<T>() {
 
+            @NonNull
+            @Override
+            public int getLayoutId() {
+                return layoutId;
+            }
+
+            @Override
+            public void onBindViewHolder(@NonNull ViewHolder holder, @NonNull T item, int position) {
+                convert(holder, item, position);
+            }
+
+            @Override
+            public int getMaxRecycleCount() {
+                return maxRecyclerCount;
+            }
+        });
+    }
     protected abstract void convert(ViewHolder holder, T t, int position);
 
     @Override

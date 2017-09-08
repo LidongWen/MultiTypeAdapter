@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MultiTypeAdapter.iml" filepath="$PROJECT_DIR$/MultiTypeAdapter.iml" />
-      <module fileurl="file://E:\wenld\wenldDemo\MultiTypeAdapter\.idea\MultiTypeAdapter.iml" filepath="E:\wenld\wenldDemo\MultiTypeAdapter\.idea\MultiTypeAdapter.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/multitypeadapter/multitypeadapter.iml" filepath="$PROJECT_DIR$/multitypeadapter/multitypeadapter.iml" />
     </modules>

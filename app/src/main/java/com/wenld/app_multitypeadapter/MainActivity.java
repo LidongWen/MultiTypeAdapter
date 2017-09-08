@@ -7,13 +7,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.wenld.app_multitypeadapter.customLayoutManager.MyLayoutManagerActivity;
+import com.wenld.app_multitypeadapter.anim.AnimtorActivity;
 import com.wenld.app_multitypeadapter.decoration.ItemDecoration;
 import com.wenld.app_multitypeadapter.empty.EmptyActivity;
 import com.wenld.app_multitypeadapter.itemTouch.ItemTouchActivity;
 import com.wenld.app_multitypeadapter.manyData.MultiDataActivity;
-import com.wenld.app_multitypeadapter.customLayoutManager.CardLayoutActivity;
-import com.wenld.app_multitypeadapter.customLayoutManager.CoustomLayoutActivity;
 import com.wenld.app_multitypeadapter.mix.MixActivity;
 import com.wenld.app_multitypeadapter.mix.TimeLineActivity;
 import com.wenld.app_multitypeadapter.mix.WaterFallActivity;
@@ -74,10 +72,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(new ItemClass("StickHeader", StickHeaderActivity.class));
         list.add(new ItemClass("StickHeaderSingle",StickHeaderSingleActivity.class));
         list.add(new ItemClass("TimeLine",TimeLineActivity.class));
-        list.add(new ItemClass("CoustomLayoutActivity",CoustomLayoutActivity.class));
-        list.add(new ItemClass("CardLayoutActivity",CardLayoutActivity.class));
-        list.add(new ItemClass("MyLayoutManagerActivity",MyLayoutManagerActivity.class));
-
+        list.add(new ItemClass("AnimtorActivity",AnimtorActivity.class));
 
         adapter.setItems(list);
         adapter.notifyDataSetChanged();

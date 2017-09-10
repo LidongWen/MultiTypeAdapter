@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.wenld.app_multitypeadapter.R;
-import com.wenld.app_multitypeadapter.customLayoutManager.layoutManager.MyLayoutManager;
 import com.wenld.app_multitypeadapter.decoration.ItemBottomDecoration;
 import com.wenld.app_multitypeadapter.stickheader.bean.GroupSingleBean;
 import com.wenld.multitypeadapter.sticky.StickyAdapter;
@@ -31,7 +30,8 @@ public class StickHeaderSingleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multidata);
         recyclerView = (RecyclerView) findViewById(R.id.rlv_multidata);
-        recyclerView.setLayoutManager(new MyLayoutManager());
+//        recyclerView.setLayoutManager(new MyLayoutManager());
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new ItemBottomDecoration(getResources().getDimensionPixelSize(R.dimen.normal_space)));
 
 

@@ -76,6 +76,7 @@ public class AnimtorActivity extends AppCompatActivity  implements View.OnClickL
         for(int i=0;i<50;i++){
             mData.add("我是"+i);
         }
+        adapter.setItems(mData);
     }
 
     @Override

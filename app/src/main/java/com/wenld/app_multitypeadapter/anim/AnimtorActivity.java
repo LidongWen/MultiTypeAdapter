@@ -69,7 +69,7 @@ public class AnimtorActivity extends AppCompatActivity  implements View.OnClickL
         adapter=new CommonAdapter<String>(this,String.class,R.layout.header_one) {
             @Override
             protected void convert(ViewHolder holder, String s, int position) {
-
+                holder.setText(R.id.tv_header,s);
             }
         };
         mRv.setAdapter(adapter);

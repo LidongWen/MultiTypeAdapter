@@ -10,6 +10,7 @@ import android.view.View;
 import com.wenld.app_multitypeadapter.anim.AnimtorActivity;
 import com.wenld.app_multitypeadapter.decoration.ItemDecoration;
 import com.wenld.app_multitypeadapter.empty.EmptyActivity;
+import com.wenld.app_multitypeadapter.headerFoot.MixHeadFootActivity;
 import com.wenld.app_multitypeadapter.itemTouch.ItemTouchActivity;
 import com.wenld.app_multitypeadapter.manyData.MultiDataActivity;
 import com.wenld.app_multitypeadapter.mix.MixActivity;
@@ -73,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
         list.add(new ItemClass("StickHeaderSingle",StickHeaderSingleActivity.class));
         list.add(new ItemClass("TimeLine",TimeLineActivity.class));
         list.add(new ItemClass("AnimtorActivity",AnimtorActivity.class));
+        list.add(new ItemClass("MixHeadFootActivity",MixHeadFootActivity.class));
+
 
         adapter.setItems(list);
         adapter.notifyDataSetChanged();

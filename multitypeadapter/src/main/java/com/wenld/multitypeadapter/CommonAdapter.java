@@ -63,10 +63,4 @@ public abstract class CommonAdapter<T> extends MultiTypeAdapter {
         });
     }
     protected abstract void convert(ViewHolder holder, T t, int position);
-
-    @Override
-    public int getItemCount() {
-        return items.size();
-    }
-
 }

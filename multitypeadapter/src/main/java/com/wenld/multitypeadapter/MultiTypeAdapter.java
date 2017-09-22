@@ -84,7 +84,11 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
 
     @Override
     public int getItemCount() {
-        return items.size();
+        if(items!=null) {
+            return items.size();
+        }
+        else
+            return 0;
     }
 
     public MultiTypeAdapter setItems(List<?> items) {

@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
 import android.text.util.Linkify;
 import android.util.SparseArray;
@@ -98,7 +99,18 @@ public class ViewHolder extends RecyclerView.ViewHolder
         tv.setText(text);
         return this;
     }
-
+    public ViewHolder setText(int viewId, CharSequence text)
+    {
+        TextView tv = getView(viewId);
+        tv.setText(text);
+        return this;
+    }
+    public ViewHolder setText(int viewId, @StringRes int  textid)
+    {
+        TextView tv = getView(viewId);
+        tv.setText(mContext.getResources().getString(textid));
+        return this;
+    }
     public ViewHolder setImageResource(int viewId, int resId)
     {
         ImageView view = getView(viewId);

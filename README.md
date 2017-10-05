@@ -18,6 +18,7 @@
     - [吸顶效果](https://github.com/LidongWen/MultiTypeAdapter/blob/master/doc/sticky.md)
     - [设置复用数量](#设置复用数量)
     - [加头加尾](#加头加尾)
+    - [分组伸展功能](#分组伸展功能)
 - [扩展](#扩展)
 - [Thrank](#Thrank)
 - [一些说明](#一些说明)
@@ -197,8 +198,11 @@ activity
 
 示例查看：[pull-load Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/pull_load/PullLoadActivity.java)
 
-#加头加尾
+# 加头加尾
     请看代码
+# 分组伸展功能
+[Empty Example](https://github.com/LidongWen/MultiTypeAdapter/blob/master/app/src/main/java/com/wenld/app_multitypeadapter/group/GroupActivity.java)
+
 # 无数据时过度界面设置
 ```java
     EmptyWrapper emptyWrapper;
@@ -235,6 +239,9 @@ public class ItemVIew01 extends MultiItemView<Bean01> {
 
 # 一些说明
 大家可能咋一看，会认为我抄袭  [drakeet](https://github.com/drakeet)的代码，我虽然有学习过他的代码，其中也让我受益良多，不论是技术点还是架构松耦合方面的知识，但是，这份开源库虽然使用上与之相似，但完全手写，不存在抄袭 [drakeet](https://github.com/drakeet) , 而且 是否抄袭 请大家阅读完源码之后再做评论，谢谢。
+
+> **V 0.2.0**
+>  　·分组伸展收缩功能
 > **V 0.1.9**
 >  　·加头加尾
 > **V 0.1.7**

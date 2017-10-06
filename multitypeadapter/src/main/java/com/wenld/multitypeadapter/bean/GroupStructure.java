@@ -9,7 +9,7 @@ import java.util.List;
 
 public class GroupStructure implements Serializable {
     public Object parent;
-    public List<?> children;
+    public List<Object> children;
 
     public boolean hasHeader() {
         if (parent != null) {

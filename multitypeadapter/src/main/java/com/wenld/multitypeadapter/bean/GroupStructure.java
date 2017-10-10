@@ -7,9 +7,9 @@ import java.util.List;
  * Created by wenld on 2017/10/3.
  */
 
-public class GroupStructure implements Serializable {
-    public Object parent;
-    public List<Object> children;
+public class GroupStructure<P extends Object,C extends Object> implements Serializable {
+    public P parent;
+    public List<C> children;
 
     public boolean hasHeader() {
         if (parent != null) {

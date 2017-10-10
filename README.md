@@ -239,7 +239,8 @@ public class ItemVIew01 extends MultiItemView<Bean01> {
 
 # 一些说明
 大家可能咋一看，会认为我抄袭  [drakeet](https://github.com/drakeet)的代码，我虽然有学习过他的代码，其中也让我受益良多，不论是技术点还是架构松耦合方面的知识，但是，这份开源库虽然使用上与之相似，但完全手写，不存在抄袭 [drakeet](https://github.com/drakeet) , 而且 是否抄袭 请大家阅读完源码之后再做评论，谢谢。
-
+> **V 0.2.2**
+>  　·GroupWrapper支持放入其他包中
 > **V 0.2.0**
 >  　·分组伸展收缩功能
 > **V 0.1.9**

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.wenld.app_multitypeadapter.R;
 import com.wenld.app_multitypeadapter.decoration.ItemDecoration;
@@ -14,6 +15,7 @@ import com.wenld.app_multitypeadapter.manyData.adapter.ItemVIewNormal;
 import com.wenld.app_multitypeadapter.manyData.bean.Bean01;
 import com.wenld.app_multitypeadapter.manyData.bean.Bean02;
 import com.wenld.app_multitypeadapter.manyData.bean.Bean03;
+import com.wenld.multitypeadapter.base.OnItemClickListener;
 import com.wenld.multitypeadapter.base.ViewHolder;
 import com.wenld.multitypeadapter.bean.GroupStructure;
 import com.wenld.multitypeadapter.wrapper.GroupWrapper;
@@ -109,6 +111,17 @@ public class GroupActivity extends AppCompatActivity {
             }
         });
         groupWrapper.expandOrShrikGroup(0);
+        groupWrapper.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, Object o, int position) {
+
+            }
+
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, Object o, int position) {
+                return false;
+            }
+        });
 //        groupWrapper.notifyDataSetChanged();
     }
 

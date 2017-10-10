@@ -26,7 +26,7 @@ public class GroupWrapper extends RecyclerView.Adapter<ViewHolder> implements On
 
     private IExpandListener listener;
     private List<Object> expandList;
-    OnItemClickListener onItemClickListener;
+    OnItemClickListener<Object> onItemClickListener;
     RecyclerView recyclerView;
     public <T> GroupWrapper register(@NonNull Class<? extends T> clazz, @NonNull MultiItemView<T> multiItemView) {
         multiTypeAdapter.register(clazz, multiItemView);
@@ -141,7 +141,7 @@ public class GroupWrapper extends RecyclerView.Adapter<ViewHolder> implements On
             }
         }
 
-        expandOrShrikGroup(recyclerView.findViewHolderForPosition(position), groupStructure.parent, position);
+        expandOrShrikGroup(recyclerView.findViewHolderForAdapterPosition(position), groupStructure.parent, position);
     }
 
     @Override
@@ -149,7 +149,7 @@ public class GroupWrapper extends RecyclerView.Adapter<ViewHolder> implements On
         expandOrShrikGroup( holder, o, position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+    public void setOnItemClickListener(OnItemClickListener<Object> onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 

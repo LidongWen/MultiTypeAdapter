@@ -22,7 +22,7 @@ public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
     //Callback回调监听时先调用的，用来判断当前是什么动作，比如判断方向（意思就是我要监听哪个方向的拖动）
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder holder) {
-        //方向：up,down,left,right
+        //方向：up,down,x,right
         //常量：
         int up = ItemTouchHelper.UP;//1  0x0001
         int down = ItemTouchHelper.DOWN;//2 0x0010

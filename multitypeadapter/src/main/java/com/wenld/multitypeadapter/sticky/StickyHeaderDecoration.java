@@ -189,7 +189,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
             if (entry.getValue().itemView.getTag() != null) {
                 Region region = (Region) entry.getValue().itemView.getTag();
                 if (x > region.left && x < region.right && y > region.top && y < region.bottom) {
-//                    Log.e("region", entry.getKey() + "  " + region.left + "  " + region.right + "  " + region.top + "  " + region.bottom);
+//                    Log.e("region", entry.getKey() + "  " + region.x + "  " + region.right + "  " + region.top + "  " + region.bottom);
                     return entry.getValue().itemView;
                 }
             }

@@ -3,6 +3,7 @@ package com.wenld.app_multitypeadapter.manyData.adapter;
 import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.wenld.app_multitypeadapter.R;
 import com.wenld.app_multitypeadapter.manyData.bean.Bean02;
 import com.wenld.multitypeadapter.base.MultiItemView;
@@ -27,12 +28,12 @@ public class ItemVIew02 extends MultiItemView<Bean02> {
         holder.setText(R.id.tv_item02, item.title);
         ImageView iv = holder.getView(R.id.iv_item02);
 
-//        Glide.with(iv.getContext())
-//                .load(item.imgUrl)
-////                .placeholder(R.mipmap.ic_launcher) // can also be a drawable
-////                .error(R.mipmap.cheese) // will be displayed if the image cannot be loaded
-//                .centerCrop()
-//                .into(iv);
+        Glide.with(iv.getContext())
+                .load(item.imgUrl)
+//                .placeholder(R.mipmap.ic_launcher) // can also be a drawable
+//                .error(R.mipmap.cheese) // will be displayed if the image cannot be loaded
+                .centerCrop()
+                .into(iv);
 
     }
 

@@ -19,28 +19,28 @@ import java.util.List;
  * Created by wenld on 2017/10/3.
  */
 
-public class GroupWrapper extends RecyclerView.Adapter<ViewHolder> implements OnItemClickListener ,ICoustomAdapter {
+public class GroupWrapper extends RecyclerView.Adapter<ViewHolder> implements OnItemClickListener , ICoustomAdapter {
     MultiTypeAdapter multiTypeAdapter = new MultiTypeAdapter();
-    List<GroupStructure> groupList;
-    List<GroupStructure> openedList = new ArrayList<>();
 
     private IExpandListener listener;
-    private List<Object> expandList;
     OnItemClickListener<Object> onItemClickListener;
     RecyclerView recyclerView;
+
+    GroupWrapperDateHelper helper = new GroupWrapperDateHelper();
+
     public <T> GroupWrapper register(@NonNull Class<? extends T> clazz, @NonNull MultiItemView<T> multiItemView) {
         multiTypeAdapter.register(clazz, multiItemView);
         return this;
     }
 
     public GroupWrapper(RecyclerView recyclerView) {
-        this.recyclerView=recyclerView;
+        this.recyclerView = recyclerView;
         multiTypeAdapter.setOnItemClickListener(this);
     }
 
     @Override
     public int getItemViewType(int position) {
-        return judgeType(position);
+        return multiTypeAdapter.getItemViewType(position);
     }
 
     @Override
@@ -58,95 +58,32 @@ public class GroupWrapper extends RecyclerView.Adapter<ViewHolder> implements On
         return multiTypeAdapter.getItemCount();
     }
 
-    public int judgeType(int position) {
-        return multiTypeAdapter.getItemViewType(position);
-    }
 
-
-    public List<GroupStructure> getGroupList() {
-        return groupList;
+    public GroupWrapperDateHelper getHelper() {
+        return helper;
     }
 
     public void setGroupList(List<GroupStructure> groupList) {
-        this.groupList = groupList;
-        calculateList();
-        multiTypeAdapter.setItems(expandList);
+        helper.sourceList = groupList;
+        helper.calculateList();
+        multiTypeAdapter.setItems(helper.adapterList);
     }
 
-    private void calculateList() {
-        if (expandList == null) {
-            expandList = new ArrayList<>();
-        }
-        expandList.clear();
-        GroupStructure objGroupStructure;
-        boolean isEqual = false;
-        lableBreak:
-        for (int j = 0; j < groupList.size(); j++) {
-            isEqual = false;
-            objGroupStructure = groupList.get(j);
-            for (int i = 0; i < openedList.size(); i++) {
-                if (objGroupStructure.equalParent(openedList.get(i).parent)) {
-                    isEqual = true;
-                    break;
-                }
-            }
-
-            if (objGroupStructure.hasHeader()) {
-                expandList.add(objGroupStructure.parent);
-            }
-
-            if (isEqual) {
-                if (objGroupStructure.getChildrenCount() > 0) {
-                    expandList.addAll(objGroupStructure.children);
-                }
-            }
-        }
-    }
 
     public void setListener(IExpandListener listener) {
         this.listener = listener;
     }
 
-    public List<GroupStructure> getOpenedList() {
-        return openedList;
-    }
-
-    public List<Object> getExpandList() {
-        return expandList;
-    }
-
-    /**
-     * 判断是否是分组头部
-     * @param position
-     * @return
-     */
-    public boolean isGroupHeader(int position){
-        Object currentObj=expandList.get(position);
-        for(  GroupStructure group:groupList){
-            if(group.equalParent(currentObj)){
-                return true;
-            }
-        }
-        return false;
-    }
 
     public void expandOrShrikGroup(int groupPosition) {
-        GroupStructure groupStructure = groupList.get(groupPosition);
-        int position = -1;
-        for (int i = 0; i < expandList.size(); i++) {
-            Object group = expandList.get(i);
-            if (group == groupStructure.parent) {
-                position = i;
-                break;
-            }
-        }
+        int position = helper.getAdapterPositionForGroupHeaderPostition(groupPosition);
 
-        expandOrShrikGroup(recyclerView.findViewHolderForAdapterPosition(position), groupStructure.parent, position);
+        expandOrShrikGroup(recyclerView.findViewHolderForAdapterPosition(position), helper.sourceList.get(groupPosition).parent, position);
     }
 
     @Override
     public void onItemClick(View view, RecyclerView.ViewHolder holder, Object o, int position) {
-        expandOrShrikGroup( holder, o, position);
+        expandOrShrikGroup(holder, o, position);
     }
 
     public void setOnItemClickListener(OnItemClickListener<Object> onItemClickListener) {
@@ -155,54 +92,154 @@ public class GroupWrapper extends RecyclerView.Adapter<ViewHolder> implements On
 
     private void expandOrShrikGroup(RecyclerView.ViewHolder holder, Object o, int position) {
         boolean needopen = true;
-        for (GroupStructure groupStructure : openedList) {
-            if (groupStructure.equalParent(o)) {
-                needopen = false;
-                openedList.remove(groupStructure);
-                if (listener != null) {
-                    listener.onShrink( holder, o, position);
-                }
-                break;
-            }
-        }
-        if (needopen) {
-            for (GroupStructure needAddGroupStrure : groupList) {
-                if (needAddGroupStrure.equalParent(o)) {
-                    openedList.add(needAddGroupStrure);
+        if (helper.isGroupHeader(position)) {
+            for (GroupStructure groupStructure : helper.openGroupList) {
+                if (groupStructure.equalParent(o)) {
+                    needopen = false;
+                    notifyDataForShrik(groupStructure, position);
                     if (listener != null) {
-                        listener.onExpand(holder, o, position);
-                    }
-                    if (needAddGroupStrure.getChildrenCount() > 0) {
-                        calculateList();
-                        notifyDataSetChanged();
+                        listener.onShrink(holder, o, position);
                     }
                     break;
                 }
             }
-        } else {
-            calculateList();
-            notifyDataSetChanged();
+            if (needopen) {
+                for (GroupStructure needAddGroupStrure : helper.sourceList) {
+                    if (needAddGroupStrure.equalParent(o)) {
+                        notifyDataForExpand(needAddGroupStrure, position);
+                        if (listener != null) {
+                            listener.onExpand(holder, o, position);
+                        }
+                        break;
+                    }
+                }
+            }
         }
-        if(onItemClickListener!=null){
-            onItemClickListener.onItemClick(holder.itemView,holder,o,position);
+
+        if (onItemClickListener != null) {
+            onItemClickListener.onItemClick(holder.itemView, holder, o, position);
+        }
+    }
+
+    void notifyDataForExpand(GroupStructure expandObj, int postiton) {
+        helper.notifyDataForExpand(expandObj,postiton);
+
+        if (expandObj.getChildrenCount() > 0) {
+            if (helper.isAnimtor) {
+                notifyItemRangeInserted(postiton + 1, expandObj.getChildrenCount());
+            } else {
+                notifyDataSetChanged();
+            }
+        }
+    }
+
+    void notifyDataForShrik(GroupStructure shrikObj, int postiton) {
+        helper.notifyDataForShrik(shrikObj);
+        if (shrikObj.getChildrenCount() > 0) {
+            if (helper.isAnimtor) {
+                notifyItemRangeRemoved(postiton + 1, shrikObj.getChildrenCount());
+            } else {
+                notifyDataSetChanged();
+            }
         }
     }
 
     @Override
     public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, Object o, int position) {
-        if(onItemClickListener!=null)
-            return onItemClickListener.onItemLongClick(view,holder,o,position);
+        if (onItemClickListener != null)
+            return onItemClickListener.onItemLongClick(view, holder, o, position);
         return false;
     }
 
     @Override
     public void onViewAttachedToWindow(RecyclerView.ViewHolder holder, int postion) {
-        multiTypeAdapter.onViewAttachedToWindow(holder,postion);
+        multiTypeAdapter.onViewAttachedToWindow(holder, postion);
     }
 
     public interface IExpandListener {
         void onExpand(RecyclerView.ViewHolder holder, Object o, int position);
 
         void onShrink(RecyclerView.ViewHolder holder, Object o, int position);
+    }
+
+    public static class GroupWrapperDateHelper {
+        public boolean isAnimtor = false;
+        // 分组源数据
+        public List<GroupStructure> sourceList;
+        // 打开的分组列表
+        public List<GroupStructure> openGroupList = new ArrayList<>();
+        // 展示的数据集合
+        public List<Object> adapterList;
+
+        /**
+         * 判断是否是分组头部
+         *
+         * @param position
+         * @return
+         */
+        public boolean isGroupHeader(int position) {
+            Object currentObj = adapterList.get(position);
+            for (GroupStructure group : sourceList) {
+                if (group.equalParent(currentObj)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        // 转换数据
+        private void calculateList() {
+            if (adapterList == null) {
+                adapterList = new ArrayList<>();
+            }
+            adapterList.clear();
+            GroupStructure objGroupStructure;
+            boolean isEqual = false;
+            lableBreak:
+            for (int j = 0; j < sourceList.size(); j++) {
+                isEqual = false;
+                objGroupStructure = sourceList.get(j);
+                for (int i = 0; i < openGroupList.size(); i++) {
+                    if (objGroupStructure.equalParent(openGroupList.get(i).parent)) {
+                        isEqual = true;
+                        break;
+                    }
+                }
+
+                if (objGroupStructure.hasHeader()) {
+                    adapterList.add(objGroupStructure.parent);
+                }
+
+                if (isEqual) {
+                    if (objGroupStructure.getChildrenCount() > 0) {
+                        adapterList.addAll(objGroupStructure.children);
+                    }
+                }
+            }
+        }
+        //
+        public int getAdapterPositionForGroupHeaderPostition(int groupPosition) {
+            GroupStructure groupStructure = sourceList.get(groupPosition);
+            int position = -1;
+            for (int i = 0; i < adapterList.size(); i++) {
+                Object group = adapterList.get(i);
+                if (group == groupStructure.parent) {
+                    position = i;
+                    break;
+                }
+            }
+            return position;
+        }
+        void notifyDataForExpand(GroupStructure expandObj,int adapterPostiton) {
+            openGroupList.add(expandObj);
+            if (expandObj.getChildrenCount() > 0) {
+                adapterList.addAll(adapterPostiton + 1, expandObj.children);
+            }
+        }
+        void notifyDataForShrik(GroupStructure shrikObj) {
+            openGroupList.remove(shrikObj);
+            if (shrikObj.getChildrenCount() > 0) {
+                adapterList.removeAll(shrikObj.children);
+            }
+        }
     }
 }

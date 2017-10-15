@@ -14,4 +14,9 @@ public class StickyControl {
     public static StickyAnyHeader any(){
         return new StickyAnyHeader();
     }
+
+    //
+    public static StickyAnyHeader2 anyHeader2(){
+        return new StickyAnyHeader2();
+    }
 }

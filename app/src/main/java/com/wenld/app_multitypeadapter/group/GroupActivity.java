@@ -43,7 +43,7 @@ public class GroupActivity extends AppCompatActivity {
         GridLayoutManager.SpanSizeLookup spanSizeLookup = new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                Object item = groupWrapper.getExpandList().get(position);
+                Object item = groupWrapper.getHelper().adapterList.get(position);
                 if (item instanceof Bean01) {
                     return 1;
                 }
@@ -122,6 +122,7 @@ public class GroupActivity extends AppCompatActivity {
                 return false;
             }
         });
+        groupWrapper.getHelper().isAnimtor=true;
 //        groupWrapper.notifyDataSetChanged();
     }
 

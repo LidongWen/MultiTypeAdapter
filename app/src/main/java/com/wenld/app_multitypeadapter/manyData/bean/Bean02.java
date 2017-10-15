@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class Bean02 implements Serializable {
     public String title;
     public @DrawableRes int imgRes;
-    public String imgUrl = "http://upload-images.jianshu.io/upload_images/she.png";
+    public String imgUrl = "http://upload-images.jianshu.io/upload_images/1599843-6bccd8b6bf4a90b7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240";
 
     public Bean02(String title) {
         this.title=title;

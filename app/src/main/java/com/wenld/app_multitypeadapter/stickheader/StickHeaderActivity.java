@@ -19,6 +19,7 @@ import com.wenld.app_multitypeadapter.manyData.bean.Bean03;
 import com.wenld.app_multitypeadapter.one2many.Bean04;
 import com.wenld.multitypeadapter.MultiTypeAdapter;
 import com.wenld.multitypeadapter.base.OnItemClickListener;
+import com.wenld.multitypeadapter.sticky.StickyAnyDecoration2;
 import com.wenld.multitypeadapter.sticky.StickyControl;
 
 import java.util.ArrayList;
@@ -48,11 +49,13 @@ public class StickHeaderActivity extends AppCompatActivity {
 
         stickyTestAdapter = new StickySigleTwoAdapter(this, adapter);
         recyclerView.setAdapter(stickyTestAdapter);
-        StickyControl.any()
+        StickyControl.anyHeader2()
                 .adapter(stickyTestAdapter)
                 .setRecyclerView(recyclerView)
 //                .immersion()
                 .togo();
+
+//        recyclerView.addItemDecoration(new StickyAnyDecoration2(stickyTestAdapter)
 
         initData();
 

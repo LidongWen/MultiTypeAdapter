@@ -70,7 +70,7 @@ public class TimeLineDecoration extends RecyclerView.ItemDecoration {
         for (int i = 0; i < childCount; ++i) {
             final View child = parent.getChildAt(i);
             parent.getLayoutManager().getDecoratedBoundsWithMargins(child, this.mBounds);
-//            Log.e("mBounds", child.getLeft() + "   " + child.getTop() + "   " + child.getRight() + "   " +
+//            Log.e("mBounds", child.getX() + "   " + child.getTop() + "   " + child.getRight() + "   " +
 //                    child.getBottom() + "   " + child.getWidth() + "   " + child.getHeight() + "   " + mBounds.toString());
             // 计算水平线摆放的位置、摆放
             if (parent.getChildAdapterPosition(child) % 2 == 0) {

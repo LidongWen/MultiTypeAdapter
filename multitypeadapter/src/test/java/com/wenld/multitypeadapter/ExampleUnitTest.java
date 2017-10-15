@@ -133,7 +133,7 @@ public class ExampleUnitTest {
         groupWrapper.setGroupList(data);
         List<Object> expandList=new ArrayList<>();
         try {
-            expandList = (List<Object>) getField(groupWrapper,"expandList");
+            expandList = (List<Object>) getField(groupWrapper,"adapterList");
         } catch (Exception e) {
             e.printStackTrace();
         }

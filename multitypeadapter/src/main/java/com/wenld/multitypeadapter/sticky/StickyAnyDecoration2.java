@@ -19,6 +19,7 @@ package com.wenld.multitypeadapter.sticky;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 
@@ -100,6 +101,7 @@ public class StickyAnyDecoration2 extends RecyclerView.ItemDecoration {
                 for (int j = adapterPosList.size() - 1; j >= 0; j--) {
                     if (pos >= adapterPosList.get(j)) {
                         curPosition = adapterPosList.get(j);
+                        Log.e("头部为","："+pos);
                         break;
                     }
                 }
@@ -139,6 +141,7 @@ public class StickyAnyDecoration2 extends RecyclerView.ItemDecoration {
         currentRect.right = currentRect.left + curView.getMeasuredWidth();
         currentRect.bottom =curView.getMeasuredHeight() + currentRect.top;
 
+        Log.e("偏移量","："+currentRect.toString());
         // 画入;
         c.save();
         c.clipRect(currentRect);

@@ -52,7 +52,7 @@ public class StickyAnyDecoration2 extends RecyclerView.ItemDecoration {
         this.gravity = gravity;
     }
 
-    private void clearHeaderCache() {
+    public void clearHeaderCache() {
         mHeaderCache.clear();
     }
 
@@ -63,7 +63,7 @@ public class StickyAnyDecoration2 extends RecyclerView.ItemDecoration {
 
     int childCount;
     List<Integer> adapterHeaderPosList = new ArrayList<>();
-    List<View> currentHeaderInPageLists = new ArrayList<>();
+    List<Integer> currentHeaderInPageLists = new ArrayList<>();
     Rect boundDecoration = new Rect();
 
     @Override
@@ -87,50 +87,59 @@ public class StickyAnyDecoration2 extends RecyclerView.ItemDecoration {
             }
         });
 
-        // 第一个分组头部  y>0  不显示
-        if (mHeaderCache.get(adapterHeaderPosList.get(0)).itemView.getTop() > 0) {
-            return;
-        }
-
         // 分组头部 高度小于 下一个分组头部 y 显示分组（偏移）
 
         // 拿到显示的分组 以及下一个分组
         curPosition = -1;
         int sencondPosition = -1;
-        boolean findCurPosition = true;
-        // 先找当前界面第一个
-        //判断控件位置与顶点关系    屏幕外 屏幕中   屏幕一半一半
-//        findBreak:
-//        for (int i = 0; i < childCount; i++) {
-//            final View child = parent.getChildAt(i);
-//            final int pos = parent.getChildAdapterPosition(child);
-//            if (findCurPosition) {
-//                for (int j = adapterHeaderPosList.size() - 1; j >= 0; j--) {
-//                    if (pos >= adapterHeaderPosList.get(j)) {
-//                        if (mHeaderCache.get(adapterHeaderPosList.get(j)).itemView.getTop() < 0) {
-//                            curPosition = adapterHeaderPosList.get(j);
-//                            findCurPosition = false;
-//                        }
-//                    }
-//                }
-//            } else if (isHeader(pos)) {
-//                currentHeaderInPageLists.add(child);
-//            }
-//        }
-        curView = mHeaderCache.get(curPosition).itemView;
-        parent.getLayoutManager().getDecoratedBoundsWithMargins(curView, this.boundDecoration);
-        curView.getMeasuredHeight();
-        for (int i = 0; i < currentHeaderInPageLists.size(); i++) {
-            if (currentHeaderInPageLists.get(i).getTop()
+        // 最多拿三个
+        findBreak:
+        for (int i = 0; i < childCount; i++) {
+            final View child = parent.getChildAt(i);
+            final int pos = parent.getChildAdapterPosition(child);
+            if (i == 0) {
+                for (int j = adapterHeaderPosList.size() - 1; j >= 0; j--) {
+                    if (pos >= adapterHeaderPosList.get(j)) {
+                        parent.getLayoutManager().getDecoratedBoundsWithMargins(mHeaderCache.get(adapterHeaderPosList.get(j)).itemView, this.boundDecoration);
+                        if (boundDecoration.top <= 0) {
+                            curPosition = adapterHeaderPosList.get(j);
+                            break;
+                        }
+                    }
+                }
+            } else if (isHeader(pos)) {
+                if (currentHeaderInPageLists.size() >= 2)
+                    break;
+                currentHeaderInPageLists.add(pos);
+            }
         }
+        if (curPosition == -1 && currentHeaderInPageLists.size() < 1)
+            return;
+        if (curPosition == -1) {
+            curPosition = currentHeaderInPageLists.get(0);
+            if (mHeaderCache.get(curPosition).itemView.getTop() >= 0)
+                return;
 
-//        parent.getLayoutManager().calculateItemDecorationsForChild(mHeaderCache.get(curPosition).itemView, this.boundDecoration);
-//        final RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) mHeaderCache.get(curPosition).itemView.getLayoutParams();
-//        final Rect insets = lp.mDecorInsets;
+            if (currentHeaderInPageLists.size() > 1) {
+                sencondPosition = currentHeaderInPageLists.get(1);
+            }
+        } else {
+            if(currentHeaderInPageLists.size() >1) {
+                parent.getLayoutManager().getDecoratedBoundsWithMargins(mHeaderCache.get(currentHeaderInPageLists.get(0)).itemView, this.boundDecoration);
+                if (boundDecoration.top < 0) {
+                    curPosition = currentHeaderInPageLists.get(0);
+                    if (currentHeaderInPageLists.size() > 1) {
+                        sencondPosition = currentHeaderInPageLists.get(1);
+                    }
+                } else {
+                    sencondPosition = currentHeaderInPageLists.get(0);
+                }
+            }
+        }
         curView = mHeaderCache.get(curPosition).itemView;
         parent.getLayoutManager().getDecoratedBoundsWithMargins(curView, this.boundDecoration);
         final RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) curView.getLayoutParams();
-        boundDecoration.left = curView.getLeft() - lp.leftMargin - boundDecoration.left;
+        boundDecoration.left = curView.getLeft() - lp.leftMargin;
         boundDecoration.top = curView.getTop() - lp.topMargin - boundDecoration.top;
 //        outBounds.set(view.getLeft() - insets.left - lp.leftMargin,
 //                view.getTop() - insets.top - lp.topMargin,
@@ -148,12 +157,12 @@ public class StickyAnyDecoration2 extends RecyclerView.ItemDecoration {
             Log.e(" sickyAnyDecoration ", String.format("offset: %s", offset));
 
             if (offset > 0) {
-                currentRect.top = Math.max(parent.getPaddingTop(), 0) + boundDecoration.top - offset;
+                currentRect.top = Math.max(parent.getPaddingTop(), 0)  - offset;
             } else {
                 currentRect.top = Math.max(parent.getPaddingTop(), 0) + boundDecoration.top;
             }
         }
-        currentRect.left = Math.max(parent.getPaddingLeft(), 0) + boundDecoration.left;
+        currentRect.left = boundDecoration.left;
         currentRect.right = currentRect.left + curView.getMeasuredWidth();
         currentRect.bottom = curView.getMeasuredHeight() + currentRect.top;
 

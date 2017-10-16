@@ -27,15 +27,14 @@ import java.util.List;
 
 public class StickHeaderActivity extends AppCompatActivity {
     private static final int SPAN_COUNT = 4;
-    private MultiTypeAdapter adapter;
+    private StickySigleTwoAdapter adapter;
     List<Object> items;
-    StickySigleTwoAdapter stickyTestAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multidata);
-        adapter = new MultiTypeAdapter();
+        adapter = new StickySigleTwoAdapter();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rlv_multidata);
         adapter.register(String.class, new ItemVIewNormal());
         adapter.register(Bean01.class, new ItemVIew01());
@@ -47,10 +46,9 @@ public class StickHeaderActivity extends AppCompatActivity {
         int space = getResources().getDimensionPixelSize(R.dimen.normal_space);
         recyclerView.addItemDecoration(new ItemDecoration(space));
 
-        stickyTestAdapter = new StickySigleTwoAdapter(this, adapter);
-        recyclerView.setAdapter(stickyTestAdapter);
+        recyclerView.setAdapter(adapter);
         StickyControl.anyHeader2()
-                .adapter(stickyTestAdapter)
+                .adapter(adapter)
                 .setRecyclerView(recyclerView)
 //                .immersion()
                 .togo();
@@ -89,7 +87,6 @@ public class StickHeaderActivity extends AppCompatActivity {
 
         adapter.setItems(items);
         adapter.notifyDataSetChanged();
-        stickyTestAdapter.notifyDataSetChanged();
     }
 
     private void setlayoutManager(RecyclerView recyclerView) {

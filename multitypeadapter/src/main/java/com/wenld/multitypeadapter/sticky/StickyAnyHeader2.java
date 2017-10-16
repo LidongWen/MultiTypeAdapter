@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * github: https://github.com/LidongWen
  */
 public class StickyAnyHeader2 {
-    private StickyAnyAdapter adapter;
+    private StickyHeaderAdapter adapter;
     private RecyclerView recyclerView;
     private StickyAnyDecoration2 decor;
     private int gravity = Gravity.LEFT;
@@ -23,7 +23,7 @@ public class StickyAnyHeader2 {
     public StickyAnyHeader2() {
     }
 
-    public StickyAnyHeader2 adapter(StickyAnyAdapter adapter) {
+    public StickyAnyHeader2 adapter(StickyHeaderAdapter adapter) {
         this.adapter = adapter;
         return this;
     }
@@ -46,7 +46,7 @@ public class StickyAnyHeader2 {
         goSticky(adapter, recyclerView);
     }
 
-    private void goSticky(StickyAnyAdapter adapter, RecyclerView recyclerView) {
+    private void goSticky(StickyHeaderAdapter adapter, RecyclerView recyclerView) {
         if (adapter == null || recyclerView == null) {
             throw new NullPointerException("parameter is Null !  class "
                     + this.getClass().getName() + " methon" + Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -104,8 +104,8 @@ public class StickyAnyHeader2 {
         try {
             property = (ArrayList) getField(recyclerView, "mItemDecorations");
             for (Object o : property) {
-                if (o instanceof StickyHeaderDecoration) {
-                    recyclerView.removeItemDecoration((StickyHeaderDecoration) o);
+                if (o instanceof StickyAnyDecoration2) {
+                    recyclerView.removeItemDecoration((StickyAnyDecoration2) o);
                     break;
                 }
             }
@@ -136,8 +136,8 @@ public class StickyAnyHeader2 {
         try {
             property = (ArrayList) getField(recyclerView, "mItemDecorations");
             for (Object o : property) {
-                if (o instanceof StickyHeaderDecoration) {
-                    ((StickyHeaderDecoration) o).clearHeaderCache();
+                if (o instanceof StickyAnyDecoration2) {
+                    ((StickyAnyDecoration2) o).clearHeaderCache();
                     break;
                 }
             }

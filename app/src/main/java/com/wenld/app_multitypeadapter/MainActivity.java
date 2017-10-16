@@ -20,7 +20,6 @@ import com.wenld.app_multitypeadapter.mix.WaterFallActivity;
 import com.wenld.app_multitypeadapter.one2many.One2ManyActivity;
 import com.wenld.app_multitypeadapter.pull_load.PullLoadActivity;
 import com.wenld.app_multitypeadapter.stickheader.StickHeaderActivity;
-import com.wenld.app_multitypeadapter.stickheader.StickHeaderSingleActivity;
 import com.wenld.app_multitypeadapter.stickheader.Sticky2Activity;
 import com.wenld.multitypeadapter.CommonAdapter;
 import com.wenld.multitypeadapter.base.OnItemClickListener;
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         list.add(new ItemClass("empty", EmptyActivity.class));
         list.add(new ItemClass("itemTouchHepler", ItemTouchActivity.class));
         list.add(new ItemClass("StickHeader", StickHeaderActivity.class));
-        list.add(new ItemClass("StickHeaderSingle",StickHeaderSingleActivity.class));
         list.add(new ItemClass("TimeLine",TimeLineActivity.class));
         list.add(new ItemClass("AnimtorActivity",AnimtorActivity.class));
         list.add(new ItemClass("MixHeadFootActivity",MixHeadFootActivity.class));

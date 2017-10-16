@@ -7,14 +7,6 @@ package com.wenld.multitypeadapter.sticky;
  */
 public class StickyControl {
 
-    public static StickySingleHeader single(){
-        return new StickySingleHeader();
-    }
-    //多种形式
-    public static StickyAnyHeader any(){
-        return new StickyAnyHeader();
-    }
-
     //
     public static StickyAnyHeader2 anyHeader2(){
         return new StickyAnyHeader2();

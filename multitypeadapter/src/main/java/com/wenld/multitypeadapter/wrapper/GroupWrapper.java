@@ -11,6 +11,7 @@ import com.wenld.multitypeadapter.base.MultiItemView;
 import com.wenld.multitypeadapter.base.OnItemClickListener;
 import com.wenld.multitypeadapter.base.ViewHolder;
 import com.wenld.multitypeadapter.bean.GroupStructure;
+import com.wenld.multitypeadapter.sticky.StickyHeaderAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
  * Created by wenld on 2017/10/3.
  */
 
-public class GroupWrapper extends RecyclerView.Adapter<ViewHolder> implements OnItemClickListener , ICoustomAdapter {
+public class GroupWrapper extends RecyclerView.Adapter<ViewHolder> implements OnItemClickListener , ICoustomAdapter,StickyHeaderAdapter {
     MultiTypeAdapter multiTypeAdapter = new MultiTypeAdapter();
 
     private IExpandListener listener;
@@ -154,6 +155,11 @@ public class GroupWrapper extends RecyclerView.Adapter<ViewHolder> implements On
     @Override
     public void onViewAttachedToWindow(RecyclerView.ViewHolder holder, int postion) {
         multiTypeAdapter.onViewAttachedToWindow(holder, postion);
+    }
+
+    @Override
+    public boolean isHeader(int position) {
+        return helper.isGroupHeader(position);
     }
 
     public interface IExpandListener {

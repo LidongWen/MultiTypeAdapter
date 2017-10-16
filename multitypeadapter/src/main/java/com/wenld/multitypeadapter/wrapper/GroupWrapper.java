@@ -178,6 +178,10 @@ public class GroupWrapper extends RecyclerView.Adapter<ViewHolder> implements On
          * @return
          */
         public boolean isGroupHeader(int position) {
+            //越界
+            if(adapterList.size()<position){
+                return false;
+            }
             Object currentObj = adapterList.get(position);
             for (GroupStructure group : sourceList) {
                 if (group.equalParent(currentObj)) {

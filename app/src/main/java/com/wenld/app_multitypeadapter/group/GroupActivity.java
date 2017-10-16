@@ -122,7 +122,7 @@ public class GroupActivity extends AppCompatActivity {
                 return false;
             }
         });
-        groupWrapper.getHelper().isAnimtor=true;
+        groupWrapper.getHelper().isAnimtor=false;
 //        groupWrapper.notifyDataSetChanged();
     }
 

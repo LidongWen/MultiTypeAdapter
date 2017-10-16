@@ -62,8 +62,8 @@ public class StickyAnyDecoration2 extends RecyclerView.ItemDecoration {
 
 
     int childCount;
-    List<Integer> adapterPosList = new ArrayList<>();
-
+    List<Integer> adapterHeaderPosList = new ArrayList<>();
+    List<View> currentHeaderInPageLists = new ArrayList<>();
     Rect boundDecoration = new Rect();
 
     @Override
@@ -75,9 +75,12 @@ public class StickyAnyDecoration2 extends RecyclerView.ItemDecoration {
             return;
         }
         // 计算当前显示的是哪个？ 且偏移多少 将位置信息放入 currentRect
-        adapterPosList.clear();
-        adapterPosList = new ArrayList(mHeaderCache.keySet());
-        Collections.sort(adapterPosList, new Comparator<Integer>() {
+        adapterHeaderPosList.clear();
+        currentHeaderInPageLists.clear();
+        adapterHeaderPosList = new ArrayList(mHeaderCache.keySet());
+
+
+        Collections.sort(adapterHeaderPosList, new Comparator<Integer>() {
             @Override
             public int compare(Integer e1, Integer e2) {
                 return e1.compareTo(e2);
@@ -85,51 +88,64 @@ public class StickyAnyDecoration2 extends RecyclerView.ItemDecoration {
         });
 
         // 第一个分组头部  y>0  不显示
-        if (mHeaderCache.get(adapterPosList.get(0)).itemView.getTop() > 0) {
+        if (mHeaderCache.get(adapterHeaderPosList.get(0)).itemView.getTop() > 0) {
             return;
         }
 
         // 分组头部 高度小于 下一个分组头部 y 显示分组（偏移）
 
         // 拿到显示的分组 以及下一个分组
+        curPosition = -1;
         int sencondPosition = -1;
-        for (int i = 0; i < childCount; i++) {
-            final View child = parent.getChildAt(i);
-            int pos = parent.getChildAdapterPosition(child);
-
-            if (i == 0) {
-                for (int j = adapterPosList.size() - 1; j >= 0; j--) {
-                    if (pos >= adapterPosList.get(j)) {
-                        curPosition = adapterPosList.get(j);
-                        Log.e("头部为","："+pos);
-                        break;
-                    }
-                }
-            } else if (isHeader(pos)) {
-                sencondPosition = pos;
-                break;
-            }
+        boolean findCurPosition = true;
+        // 先找当前界面第一个
+        //判断控件位置与顶点关系    屏幕外 屏幕中   屏幕一半一半
+//        findBreak:
+//        for (int i = 0; i < childCount; i++) {
+//            final View child = parent.getChildAt(i);
+//            final int pos = parent.getChildAdapterPosition(child);
+//            if (findCurPosition) {
+//                for (int j = adapterHeaderPosList.size() - 1; j >= 0; j--) {
+//                    if (pos >= adapterHeaderPosList.get(j)) {
+//                        if (mHeaderCache.get(adapterHeaderPosList.get(j)).itemView.getTop() < 0) {
+//                            curPosition = adapterHeaderPosList.get(j);
+//                            findCurPosition = false;
+//                        }
+//                    }
+//                }
+//            } else if (isHeader(pos)) {
+//                currentHeaderInPageLists.add(child);
+//            }
+//        }
+        curView = mHeaderCache.get(curPosition).itemView;
+        parent.getLayoutManager().getDecoratedBoundsWithMargins(curView, this.boundDecoration);
+        curView.getMeasuredHeight();
+        for (int i = 0; i < currentHeaderInPageLists.size(); i++) {
+            if (currentHeaderInPageLists.get(i).getTop()
         }
 
 //        parent.getLayoutManager().calculateItemDecorationsForChild(mHeaderCache.get(curPosition).itemView, this.boundDecoration);
 //        final RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) mHeaderCache.get(curPosition).itemView.getLayoutParams();
 //        final Rect insets = lp.mDecorInsets;
-        parent.getLayoutManager().getDecoratedBoundsWithMargins(mHeaderCache.get(curPosition).itemView, this.boundDecoration);
-        curView=mHeaderCache.get(curPosition).itemView;
+        curView = mHeaderCache.get(curPosition).itemView;
+        parent.getLayoutManager().getDecoratedBoundsWithMargins(curView, this.boundDecoration);
         final RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) curView.getLayoutParams();
-        boundDecoration.left=curView.getLeft()-lp.leftMargin;
-        boundDecoration.top=curView.getTop()-lp.topMargin;
+        boundDecoration.left = curView.getLeft() - lp.leftMargin - boundDecoration.left;
+        boundDecoration.top = curView.getTop() - lp.topMargin - boundDecoration.top;
 //        outBounds.set(view.getLeft() - insets.left - lp.leftMargin,
 //                view.getTop() - insets.top - lp.topMargin,
 //                view.getRight() + insets.right + lp.rightMargin,
 //                view.getBottom() + insets.bottom + lp.bottomMargin);
+        Log.e(" sickyAnyDecoration ", String.format("curPosition: %s  sencondPosition:%s  left:%s top：%s", curPosition, sencondPosition, boundDecoration.left
+                , boundDecoration.top));
         if (sencondPosition == -1) {
             //显示一个分组
             currentRect.top = Math.max(parent.getPaddingTop(), 0) + boundDecoration.top;
 
         } else {
-            int offset =curView.getMeasuredHeight() + parent.getPaddingTop()
-                    - curView.getTop();
+            int offset = curView.getMeasuredHeight() + parent.getPaddingTop()
+                    - mHeaderCache.get(sencondPosition).itemView.getTop();
+            Log.e(" sickyAnyDecoration ", String.format("offset: %s", offset));
 
             if (offset > 0) {
                 currentRect.top = Math.max(parent.getPaddingTop(), 0) + boundDecoration.top - offset;
@@ -139,13 +155,11 @@ public class StickyAnyDecoration2 extends RecyclerView.ItemDecoration {
         }
         currentRect.left = Math.max(parent.getPaddingLeft(), 0) + boundDecoration.left;
         currentRect.right = currentRect.left + curView.getMeasuredWidth();
-        currentRect.bottom =curView.getMeasuredHeight() + currentRect.top;
+        currentRect.bottom = curView.getMeasuredHeight() + currentRect.top;
 
-        Log.e("偏移量","："+currentRect.toString());
         // 画入;
         c.save();
-        c.clipRect(currentRect);
-
+        c.translate(currentRect.left, currentRect.top);
         mHeaderCache.get(curPosition).itemView.draw(c);
         c.restore();
     }

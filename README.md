@@ -42,7 +42,7 @@ repositories {
 }
 // yout project build.gradle
 dependencies {
-        compile 'com.github.LidongWen:MultiTypeAdapter:0.1.6'
+        compile 'com.github.LidongWen:MultiTypeAdapter:xxx'
 }
 ```
 # 单数据

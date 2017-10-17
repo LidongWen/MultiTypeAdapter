@@ -3,11 +3,13 @@ package com.wenld.app_multitypeadapter.stickheader;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 
-import com.wenld.multitypeadapter.MultiTypeAdapter;
-import com.wenld.multitypeadapter.sticky.StickyHeaderAdapter;
+import com.wenld.multitypeadapter.sticky.StickyAnyAdapter;
 
 
-public class StickySigleTwoAdapter extends MultiTypeAdapter implements StickyHeaderAdapter {
+public class StickySigleTwoAdapter extends StickyAnyAdapter {
+    public StickySigleTwoAdapter(Context context, RecyclerView.Adapter mAdapter) {
+        super(context, mAdapter);
+    }
 
     @Override
     public boolean isHeader(int position) {

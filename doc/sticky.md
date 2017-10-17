@@ -48,42 +48,35 @@ dependencies {
 }
 ```
 # 使用 类型1
-添加分组
-**1、 自定义一个 StickyAdapter**
- 在这里你可以设置 header 布局，header的位置
+定义一个Adapter
 ```
-public class StickySigleTwoAdapter extends StickyAdapter {
-    public StickySigleTwoAdapter(Context context, RecyclerView.Adapter mAdapter) {
-        super(context, mAdapter);
+     class StickySigleTwoAdapter extends MultiTypeAdapter implements StickyHeaderAdapter {
+
+        @Override
+        public boolean isHeader(int position) {
+
+            if (position  == 0 || position == 8 || position == 15|| position == 21|| position == 28) {
+                return true;
+            } else
+                return false;
+        }
     }
-    @Override
-    public boolean isHeader(int position) {
-        if (position % 10 == 0) {
-            return true;
-        } else
-            return false;
-    }
-    @Override
-    public void onBindHeaderViewHolder(final ViewHolder viewholder, final int position) {
-    }
-    @Override
-    protected int getLayoutId() {
-        return R.layout.header_two;
-    }
-}
 ```
-**2、在activity中设置**
+使用
 ```
-//将 adapter 包裹进  StickyAdapter
-// setAdapter
-//配置生效
-stickyTestAdapter = new StickySigleTwoAdapter(this, adapter);
-recyclerView.setAdapter(stickyTestAdapter);
-StickyControl.single()          // 设置单个
-        .adapter(stickyTestAdapter)         //
-        .setRecyclerView(recyclerView)
-        .immersion()                    // 是否嵌入
-        .togo();
+        adapter = new StickySigleTwoAdapter();
+          RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rlv_multidata);
+          recyclerView.setNestedScrollingEnabled(false);
+          adapter.register(String.class, new ItemVIewNormal());
+          adapter.register(Bean01.class, new ItemVIew01());
+          adapter.register(Bean02.class, new ItemVIew02());
+          adapter.register(Bean03.class, new ItemVIew03());
+        recyclerView.setAdapter(adapter);
+        StickyControl.anyHeader2()
+                .adapter(adapter)
+                .setRecyclerView(recyclerView)
+//                .immersion()
+                .togo();
 ```
 # 使用 模式2
 在内容itemView中选取悬浮 头部；下面这种效果
@@ -113,6 +106,30 @@ StickyControl.any()
 //                .immersion()
         .togo();
 ```
+
+# 使用模式3
+将布局放入 StickyNestedScrollView 中   ，并将 需要黏贴的头部的view  设置 tag属性为  "sticky" "-nonconstant" "-hastransparency"中的任意属性
+```
+   <com.wenld.multitypeadapter.sticky.StickyNestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <VewGroup>
+        <view   sticky:tag="sticky"
+        ...
+        </view>
+        <view   sticky:tag="-nonconstant"
+            ...
+        </view>
+    </VewGroup>
+    </com.wenld.multitypeadapter.sticky.StickyNestedScrollView>
+```
+
+三种方式优缺点：
+ 模式 | recyclerView | anyView |  优点 | 不足
+  --- | --- | --- | --- | ---
+  mode 1 | ✔ | ✘ | 准确黏贴头部 | 开启复用 位置会变化
+  mode 2 | ✔ | ✘ | 准确黏贴头部 |不会 触发 glide 等图片框架加载图片
+  mode 2 | ✔ | ✔ | 支持任意view，准确黏贴头部 | 不支持recyclerView复用，否则失效
 
  **文章地址：[戳我!](http://www.jianshu.com/p/032a6773620b)**
  **代码传送门：[戳我!!!](https://github.com/LidongWen/MultiTypeAdapter)**

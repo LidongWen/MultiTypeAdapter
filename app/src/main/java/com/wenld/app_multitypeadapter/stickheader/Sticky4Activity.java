@@ -20,23 +20,22 @@ import com.wenld.app_multitypeadapter.one2many.Bean04;
 import com.wenld.multitypeadapter.MultiTypeAdapter;
 import com.wenld.multitypeadapter.base.OnItemClickListener;
 import com.wenld.multitypeadapter.sticky.StickyControl;
-import com.wenld.multitypeadapter.sticky.StickyHeaderAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StickHeaderActivity extends AppCompatActivity {
-    private int SPAN_COUNT = 4;
-    private StickySigleTwoAdapter adapter;
+public class Sticky4Activity extends AppCompatActivity {
+    private static final int SPAN_COUNT = 4;
+    private MultiTypeAdapter adapter;
     List<Object> items;
+    StickySigleTwoAdapter stickyTestAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multidata);
-        adapter = new StickySigleTwoAdapter();
+        adapter = new MultiTypeAdapter();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rlv_multidata);
-        recyclerView.setNestedScrollingEnabled(false);
         adapter.register(String.class, new ItemVIewNormal());
         adapter.register(Bean01.class, new ItemVIew01());
         adapter.register(Bean02.class, new ItemVIew02());
@@ -47,9 +46,10 @@ public class StickHeaderActivity extends AppCompatActivity {
         int space = getResources().getDimensionPixelSize(R.dimen.normal_space);
         recyclerView.addItemDecoration(new ItemDecoration(space));
 
-        recyclerView.setAdapter(adapter);
+        stickyTestAdapter = new StickySigleTwoAdapter(this, adapter);
+        recyclerView.setAdapter(stickyTestAdapter);
         StickyControl.anyHeader2()
-                .adapter(adapter)
+                .adapter(stickyTestAdapter)
                 .setRecyclerView(recyclerView)
 //                .immersion()
                 .togo();
@@ -88,6 +88,7 @@ public class StickHeaderActivity extends AppCompatActivity {
 
         adapter.setItems(items);
         adapter.notifyDataSetChanged();
+        stickyTestAdapter.notifyDataSetChanged();
     }
 
     private void setlayoutManager(RecyclerView recyclerView) {
@@ -117,17 +118,6 @@ public class StickHeaderActivity extends AppCompatActivity {
         layoutManager.setSpanSizeLookup(spanSizeLookup);
         recyclerView.setLayoutManager(layoutManager);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
-     class StickySigleTwoAdapter extends MultiTypeAdapter implements StickyHeaderAdapter {
-
-        @Override
-        public boolean isHeader(int position) {
-
-            if (position  == 0 || position == 8 || position == 15|| position == 21|| position == 28) {
-                return true;
-            } else
-                return false;
-        }
     }
 
 }

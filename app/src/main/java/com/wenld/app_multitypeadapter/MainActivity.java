@@ -21,6 +21,7 @@ import com.wenld.app_multitypeadapter.one2many.One2ManyActivity;
 import com.wenld.app_multitypeadapter.pull_load.PullLoadActivity;
 import com.wenld.app_multitypeadapter.stickheader.StickHeaderActivity;
 import com.wenld.app_multitypeadapter.stickheader.Sticky2Activity;
+import com.wenld.app_multitypeadapter.stickheader.Sticky3Activity;
 import com.wenld.multitypeadapter.CommonAdapter;
 import com.wenld.multitypeadapter.base.OnItemClickListener;
 import com.wenld.multitypeadapter.base.ViewHolder;
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(new ItemClass("MixHeadFootActivity",MixHeadFootActivity.class));
         list.add(new ItemClass("GroupActivity",GroupActivity.class));
         list.add(new ItemClass("Sticky2Activity",Sticky2Activity.class));
+        list.add(new ItemClass("Sticky3Activity",Sticky3Activity.class));
 
         adapter.setItems(list);
         adapter.notifyDataSetChanged();

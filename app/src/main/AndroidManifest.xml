@@ -55,6 +55,9 @@
         <activity android:name=".stickheader.Sticky2Activity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".stickheader.Sticky3Activity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

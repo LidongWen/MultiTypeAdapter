@@ -1,14 +1,12 @@
 package com.wenld.app_multitypeadapter.stickheader;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 
 import com.wenld.app_multitypeadapter.R;
-import com.wenld.app_multitypeadapter.decoration.ItemDecoration;
 import com.wenld.app_multitypeadapter.manyData.adapter.ItemVIew01;
 import com.wenld.app_multitypeadapter.manyData.adapter.ItemVIew02;
 import com.wenld.app_multitypeadapter.manyData.adapter.ItemVIew03;
@@ -17,64 +15,41 @@ import com.wenld.app_multitypeadapter.manyData.bean.Bean01;
 import com.wenld.app_multitypeadapter.manyData.bean.Bean02;
 import com.wenld.app_multitypeadapter.manyData.bean.Bean03;
 import com.wenld.app_multitypeadapter.one2many.Bean04;
-import com.wenld.multitypeadapter.base.OnItemClickListener;
-import com.wenld.multitypeadapter.sticky.StickyControl;
+import com.wenld.multitypeadapter.MultiTypeAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class StickHeaderActivity extends AppCompatActivity {
-    private int SPAN_COUNT = 4;
-    private StickySigleTwoAdapter adapter;
-    List<Object> items;
+/**
+ * Created by wenld on 2017/10/14.
+ */
 
+public class Sticky3Activity extends AppCompatActivity {
+    private MultiTypeAdapter adapter;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multidata);
-        adapter = new StickySigleTwoAdapter();
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rlv_multidata);
+        setContentView(R.layout.activity_sticky_three);
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rlv_multiType);
         recyclerView.setNestedScrollingEnabled(false);
+        setlayoutManager(recyclerView);
+
+        adapter = new MultiTypeAdapter();
         adapter.register(String.class, new ItemVIewNormal());
         adapter.register(Bean01.class, new ItemVIew01());
         adapter.register(Bean02.class, new ItemVIew02());
         adapter.register(Bean03.class, new ItemVIew03());
-
-
-        setlayoutManager(recyclerView);
-        int space = getResources().getDimensionPixelSize(R.dimen.normal_space);
-        recyclerView.addItemDecoration(new ItemDecoration(space));
-
         recyclerView.setAdapter(adapter);
-        StickyControl.anyHeader2()
-                .adapter(adapter)
-                .setRecyclerView(recyclerView)
-//                .immersion()
-                .togo();
-
-//        recyclerView.addItemDecoration(new StickyAnyDecoration2(stickyTestAdapter)
-
         initData();
-
-        adapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, RecyclerView.ViewHolder holder, Object o, int position) {
-                Log.e("position:", position + "");
-            }
-
-            @Override
-            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, Object o, int position) {
-                return false;
-            }
-        });
     }
-
+    ArrayList<Object> items;
     private void initData() {
 
-        items = new ArrayList<>();
+         items = new ArrayList<>();
         for (int j = 0; j < 10; j++) {
             for (int i = 0; i < 8; i++) {
                 items.add(new Bean01("bean01_" + i));
+                items.add(j+"");
             }
             for (int i = 0; i < 2; i++) {
                 items.add(new Bean02("bean02_" + i));
@@ -87,7 +62,7 @@ public class StickHeaderActivity extends AppCompatActivity {
         adapter.setItems(items);
         adapter.notifyDataSetChanged();
     }
-
+    private  int SPAN_COUNT = 4;
     private void setlayoutManager(RecyclerView recyclerView) {
         final GridLayoutManager layoutManager = new GridLayoutManager(this, SPAN_COUNT);
         GridLayoutManager.SpanSizeLookup spanSizeLookup = new GridLayoutManager.SpanSizeLookup() {
@@ -116,5 +91,4 @@ public class StickHeaderActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
-
 }

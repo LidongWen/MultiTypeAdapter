@@ -3,6 +3,7 @@ package com.wenld.multitypeadapter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<ViewHolder> implement
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.e("onCreateViewHolder","onCreateViewHolder");
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.getContext());
         }

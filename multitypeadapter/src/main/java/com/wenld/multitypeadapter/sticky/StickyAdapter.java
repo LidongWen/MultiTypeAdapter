@@ -49,6 +49,8 @@ public abstract class StickyAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         final View view = mInflater.inflate(getLayoutId(), parent, false);
         return new ViewHolder(mInflater.getContext(), view);
     }
+    public void onBindHeaderViewHolder(final ViewHolder viewholder, final int position) {
+    }
 
     protected abstract @LayoutRes
     int getLayoutId();

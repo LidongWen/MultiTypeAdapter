@@ -166,6 +166,7 @@ StickyControl.single()          // 设置单个
 
 
 三种方式优缺点：
+
  模式 | recyclerView | anyView |  优点 | 不足  | 使用场景
   --- | --- | --- | --- | ---  | ---
   mode 1 | ✔ | ✘ | 准确黏贴头部,支持glide等图片加载框架 | 开启复用 位置会变化 | 大数据量时，使用 LinearLayoutManager时 。比如说通讯录头部

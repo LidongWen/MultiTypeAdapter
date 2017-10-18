@@ -124,12 +124,54 @@ StickyControl.any()
     </com.wenld.multitypeadapter.sticky.StickyNestedScrollView>
 ```
 
+# 使用 类型4
+添加自顶布局作为头部，
+添加分组
+**1、 自定义一个 StickyAdapter**
+ 在这里你可以设置 header 布局，header的位置
+```
+public class StickySigleTwoAdapter extends StickyAdapter {
+    public StickySigleTwoAdapter(Context context, RecyclerView.Adapter mAdapter) {
+        super(context, mAdapter);
+    }
+    @Override
+    public boolean isHeader(int position) {
+         if (position  == 0 || position == 8 || position == 14|| position == 20 || position == 28|| position == 32) {
+            return true;
+        } else
+            return false;
+    }
+    @Override
+    public void onBindHeaderViewHolder(final ViewHolder viewholder, final int position) {
+    }
+    @Override
+    protected int getLayoutId() {
+        return R.layout.header_two;
+    }
+}
+```
+**2、在activity中设置**
+```
+//将 adapter 包裹进  StickyAdapter
+// setAdapter
+//配置生效
+stickyTestAdapter = new StickySigleTwoAdapter(this, adapter);
+recyclerView.setAdapter(stickyTestAdapter);
+StickyControl.single()          // 设置单个
+        .adapter(stickyTestAdapter)         //
+        .setRecyclerView(recyclerView)
+        .immersion()                    // 是否嵌入
+        .togo();
+```
+
+
 三种方式优缺点：
- 模式 | recyclerView | anyView |  优点 | 不足
-  --- | --- | --- | --- | ---
-  mode 1 | ✔ | ✘ | 准确黏贴头部 | 开启复用 位置会变化
-  mode 2 | ✔ | ✘ | 准确黏贴头部 |不会 触发 glide 等图片框架加载图片
-  mode 2 | ✔ | ✔ | 支持任意view，准确黏贴头部 | 不支持recyclerView复用，否则失效
+ 模式 | recyclerView | anyView |  优点 | 不足  | 使用场景
+  --- | --- | --- | --- | ---  | ---
+  mode 1 | ✔ | ✘ | 准确黏贴头部,支持glide等图片加载框架 | 开启复用 位置会变化 | 大数据量时，使用 LinearLayoutManager时 。比如说通讯录头部
+  mode 2 | ✔ | ✘ | 准确黏贴头部 | 不支持glide等图片加载框架  | ，头部图片是取本地（非gilde等图片加载）
+  mode 3 | ✔ | ✔ | 支持任意view，准确黏贴头部 | 不支持recyclerView复用，不支持黏贴布局根布局是ImageView时使用glide等加载框架 | 小数据量，平常布局
+  mode 2 | ✔ | ✘ | 准确黏贴头部，准确黏贴头部 | 不支持recyclerView复用，否则失效 | 这个厉害了，布局头部大小不做限定的时候
 
  **文章地址：[戳我!](http://www.jianshu.com/p/032a6773620b)**
  **代码传送门：[戳我!!!](https://github.com/LidongWen/MultiTypeAdapter)**

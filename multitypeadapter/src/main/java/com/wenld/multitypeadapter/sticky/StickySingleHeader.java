@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * github: https://github.com/LidongWen
  */
 public class StickySingleHeader {
-    private StickyHeaderAdapter adapter;
+    private StickyAdapter adapter;
     private RecyclerView recyclerView;
     private boolean isImmersion = false;
     private StickyHeaderDecoration decor;
@@ -24,7 +24,7 @@ public class StickySingleHeader {
     public StickySingleHeader() {
     }
 
-    public StickySingleHeader adapter(StickyHeaderAdapter adapter) {
+    public StickySingleHeader adapter(StickyAdapter adapter) {
         this.adapter = adapter;
         return this;
     }
@@ -52,7 +52,7 @@ public class StickySingleHeader {
         goSticky(adapter, recyclerView);
     }
 
-    private void goSticky(StickyHeaderAdapter adapter, RecyclerView recyclerView) {
+    private void goSticky(StickyAdapter adapter, RecyclerView recyclerView) {
         if (adapter == null || recyclerView == null) {
             throw new NullPointerException("parameter is Null !  class "
                     + this.getClass().getName() + " methon" + Thread.currentThread().getStackTrace()[1].getMethodName());

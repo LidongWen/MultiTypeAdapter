@@ -174,6 +174,8 @@ StickyControl.single()          // 设置单个
   mode 3 | ✔ | ✔ | 支持任意view，准确黏贴头部 | 不支持recyclerView复用，不支持黏贴布局根布局是ImageView时使用glide等加载框架 | 小数据量，平常布局
   mode 2 | ✔ | ✘ | 准确黏贴头部，准确黏贴头部 | 不支持recyclerView复用，否则失效 | 这个厉害了，布局头部大小不做限定的时候
 
+**第一种复用方面有致命的问题。recyclerview中推荐使用第二种和四种方式。  scrollerview当中推荐使用第三种   ，鉴于黏贴头部这块事件比较多样性，后面我会将黏贴部分抽出来 不再放入包中。**
+
  **文章地址：[戳我!](http://www.jianshu.com/p/032a6773620b)**
  **代码传送门：[戳我!!!](https://github.com/LidongWen/MultiTypeAdapter)**
 

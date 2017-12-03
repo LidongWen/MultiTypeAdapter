@@ -1,4 +1,5 @@
-# MultiType-Adapter
+# MultiType-Adapter  [![](https://jitpack.io/v/LidongWen/MultiTypeAdapter.svg)](https://jitpack.io/#LidongWen/MultiTypeAdapter)
+
 一款轻量级支持多数据类型的 RecyclerView 适配器; 使用简单，完全解耦;
 
 

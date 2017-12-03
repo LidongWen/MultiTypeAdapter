@@ -35,6 +35,8 @@
 - 可读、代码清晰干净
 
 # 基础用法
+[![](https://jitpack.io/v/LidongWen/MultiTypeAdapter.svg)](https://jitpack.io/#LidongWen/MultiTypeAdapter)
+
 ```groovy
 // root build.gradle
 repositories {

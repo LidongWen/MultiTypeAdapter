@@ -35,7 +35,7 @@
 - 可读、代码清晰干净
 
 # 基础用法
-[![](https://jitpack.io/v/LidongWen/MultiTypeAdapter.svg)](https://jitpack.io/#LidongWen/MultiTypeAdapter)
+version：[![](https://jitpack.io/v/LidongWen/MultiTypeAdapter.svg)](https://jitpack.io/#LidongWen/MultiTypeAdapter)
 
 ```groovy
 // root build.gradle
@@ -45,7 +45,7 @@ repositories {
 }
 // yout project build.gradle
 dependencies {
-        compile 'com.github.LidongWen:MultiTypeAdapter:xxx'
+        compile 'com.github.LidongWen:MultiTypeAdapter:version'
 }
 ```
 # 单数据

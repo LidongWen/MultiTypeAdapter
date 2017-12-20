@@ -30,10 +30,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:${supportLibraryVersion}"
-    compile "com.android.support:recyclerview-v7:${supportLibraryVersion}"
-    compile "com.android.support:support-annotations:${supportLibraryVersion}"
-    testCompile 'com.alibaba:fastjson:1.2.39'
+    provided "com.android.support:appcompat-v7:${supportLibraryVersion}"
+    provided "com.android.support:recyclerview-v7:${supportLibraryVersion}"
+    provided "com.android.support:support-annotations:${supportLibraryVersion}"
+    provided 'com.alibaba:fastjson:1.2.39'
 }
 
 

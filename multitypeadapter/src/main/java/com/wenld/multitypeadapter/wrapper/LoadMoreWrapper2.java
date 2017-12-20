@@ -2,7 +2,6 @@ package com.wenld.multitypeadapter.wrapper;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -65,7 +64,6 @@ public class LoadMoreWrapper2 extends RecyclerView.Adapter<RecyclerView.ViewHold
         if (isShowLoadMore(position)) {
             if (mOnLoadMoreListener != null && !isLoading) {
                 isLoading = true;
-                Log.e("onBindViewHolder",isLoading+" "+position);
                 mOnLoadMoreListener.onLoadMoreRequested();
             }
             return;

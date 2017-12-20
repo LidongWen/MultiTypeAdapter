@@ -1,4 +1,5 @@
-# MultiType-Adapter
+# MultiType-Adapter  [![](https://jitpack.io/v/LidongWen/MultiTypeAdapter.svg)](https://jitpack.io/#LidongWen/MultiTypeAdapter)
+
 一款轻量级支持多数据类型的 RecyclerView 适配器; 使用简单，完全解耦;
 
 
@@ -34,6 +35,8 @@
 - 可读、代码清晰干净
 
 # 基础用法
+version：[![](https://jitpack.io/v/LidongWen/MultiTypeAdapter.svg)](https://jitpack.io/#LidongWen/MultiTypeAdapter)
+
 ```groovy
 // root build.gradle
 repositories {
@@ -42,7 +45,7 @@ repositories {
 }
 // yout project build.gradle
 dependencies {
-        compile 'com.github.LidongWen:MultiTypeAdapter:xxx'
+        compile 'com.github.LidongWen:MultiTypeAdapter:version'
 }
 ```
 # 单数据
